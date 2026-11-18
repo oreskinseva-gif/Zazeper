@@ -1,6 +1,7 @@
 package com.narezany.poezd;
 
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.graphics.Color;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
@@ -12,14 +13,23 @@ public class GameActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        CrashLog.init(this);
+        CrashLog.mark("onCreate start");
         hideBars();
 
         GameWorld world = new GameWorld();
+        CrashLog.mark("world created, scenery=" + world.scenery.size());
         ControlsView controls = new ControlsView(this, world);
         GLSurfaceView gl = new GLSurfaceView(this);
-        gl.setEGLContextClientVersion(3);
+
+        ActivityManager am = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
+        int gles = am.getDeviceConfigurationInfo().reqGlEsVersion;
+        int version = gles >= 0x30000 ? 3 : 2;
+        CrashLog.mark("GLES version from device: " + Integer.toHexString(gles) + " -> use " + version);
+        gl.setEGLContextClientVersion(version);
         gl.setRenderer(new GameRenderer(world, controls));
         gl.setRenderMode(GLSurfaceView.RENDERMODE_CONTINUOUSLY);
+        CrashLog.mark("renderer set");
 
         FrameLayout root = new FrameLayout(this);
         root.setBackgroundColor(Color.BLACK);
@@ -28,6 +38,7 @@ public class GameActivity extends Activity {
         root.addView(controls, new FrameLayout.LayoutParams(
                 FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
         setContentView(root);
+        CrashLog.mark("content view set");
     }
 
     private void hideBars() {
