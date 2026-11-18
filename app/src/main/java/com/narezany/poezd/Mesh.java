@@ -10,9 +10,11 @@ import java.util.ArrayList;
 
 /** Геометрия: вершины = позиция(3) + нормаль(3) + цвет(3). */
 final class Mesh {
-    final FloatBuffer vertices;
-    final ShortBuffer indices;
+    private final FloatBuffer vertices;
+    private final ShortBuffer indices;
     final int count;
+
+    private int vbo, ibo;
 
     private Mesh(float[] v, short[] i) {
         ByteBuffer vb = ByteBuffer.allocateDirect(v.length * 4).order(ByteOrder.nativeOrder());
@@ -26,14 +28,32 @@ final class Mesh {
         count = i.length;
     }
 
-    void bind(int posLoc, int normLoc, int colLoc) {
+    /** Вызывается после создания GL-контекста. */
+    void upload() {
+        if (vbo != 0) return;
+        int[] buf = new int[2];
+        GLES30.glGenBuffers(2, buf, 0);
+        vbo = buf[0];
+        ibo = buf[1];
+        GLES30.glBindBuffer(GLES30.GL_ARRAY_BUFFER, vbo);
         vertices.position(0);
+        GLES30.glBufferData(GLES30.GL_ARRAY_BUFFER, vertices.capacity() * 4,
+                vertices, GLES30.GL_STATIC_DRAW);
+        GLES30.glBindBuffer(GLES30.GL_ELEMENT_ARRAY_BUFFER, ibo);
+        indices.position(0);
+        GLES30.glBufferData(GLES30.GL_ELEMENT_ARRAY_BUFFER, indices.capacity() * 2,
+                indices, GLES30.GL_STATIC_DRAW);
+        GLES30.glBindBuffer(GLES30.GL_ARRAY_BUFFER, 0);
+        GLES30.glBindBuffer(GLES30.GL_ELEMENT_ARRAY_BUFFER, 0);
+    }
+
+    void bind(int posLoc, int normLoc, int colLoc) {
+        GLES30.glBindBuffer(GLES30.GL_ARRAY_BUFFER, vbo);
+        GLES30.glBindBuffer(GLES30.GL_ELEMENT_ARRAY_BUFFER, ibo);
         GLES30.glVertexAttribPointer(posLoc, 3, GLES30.GL_FLOAT, false, 36, 0);
         GLES30.glEnableVertexAttribArray(posLoc);
-        vertices.position(3);
         GLES30.glVertexAttribPointer(normLoc, 3, GLES30.GL_FLOAT, false, 36, 12);
         GLES30.glEnableVertexAttribArray(normLoc);
-        vertices.position(6);
         GLES30.glVertexAttribPointer(colLoc, 3, GLES30.GL_FLOAT, false, 36, 24);
         GLES30.glEnableVertexAttribArray(colLoc);
     }
@@ -73,12 +93,12 @@ final class Mesh {
         void box(float cx, float cy, float cz, float sx, float sy, float sz, float[] col) {
             float hx = sx * 0.5f, hy = sy * 0.5f, hz = sz * 0.5f;
             float[][][] q = {
-                {p(cx-hx,cy-hy,cz+hz), p(cx+hx,cy-hy,cz+hz), p(cx+hx,cy+hy,cz+hz), p(cx-hx,cy+hy,cz+hz)}, // +Z
-                {p(cx+hx,cy-hy,cz-hz), p(cx-hx,cy-hy,cz-hz), p(cx-hx,cy+hy,cz-hz), p(cx+hx,cy+hy,cz-hz)}, // -Z
-                {p(cx+hx,cy-hy,cz+hz), p(cx+hx,cy-hy,cz-hz), p(cx+hx,cy+hy,cz-hz), p(cx+hx,cy+hy,cz+hz)}, // +X
-                {p(cx-hx,cy-hy,cz-hz), p(cx-hx,cy-hy,cz+hz), p(cx-hx,cy+hy,cz+hz), p(cx-hx,cy+hy,cz-hz)}, // -X
-                {p(cx-hx,cy+hy,cz+hz), p(cx+hx,cy+hy,cz+hz), p(cx+hx,cy+hy,cz-hz), p(cx-hx,cy+hy,cz-hz)}, // +Y
-                {p(cx-hx,cy-hy,cz-hz), p(cx+hx,cy-hy,cz-hz), p(cx+hx,cy-hy,cz+hz), p(cx-hx,cy-hy,cz+hz)}  // -Y
+                {p(cx-hx,cy-hy,cz+hz), p(cx+hx,cy-hy,cz+hz), p(cx+hx,cy+hy,cz+hz), p(cx-hx,cy+hy,cz+hz)},
+                {p(cx+hx,cy-hy,cz-hz), p(cx-hx,cy-hy,cz-hz), p(cx-hx,cy+hy,cz-hz), p(cx+hx,cy+hy,cz-hz)},
+                {p(cx+hx,cy-hy,cz+hz), p(cx+hx,cy-hy,cz-hz), p(cx+hx,cy+hy,cz-hz), p(cx+hx,cy+hy,cz+hz)},
+                {p(cx-hx,cy-hy,cz-hz), p(cx-hx,cy-hy,cz+hz), p(cx-hx,cy+hy,cz+hz), p(cx-hx,cy+hy,cz-hz)},
+                {p(cx-hx,cy+hy,cz+hz), p(cx+hx,cy+hy,cz+hz), p(cx+hx,cy+hy,cz-hz), p(cx-hx,cy+hy,cz-hz)},
+                {p(cx-hx,cy-hy,cz-hz), p(cx+hx,cy-hy,cz-hz), p(cx+hx,cy-hy,cz+hz), p(cx-hx,cy-hy,cz+hz)}
             };
             for (float[][] f : q) quad(f[0], f[1], f[2], f[3], col);
         }
@@ -96,8 +116,8 @@ final class Mesh {
                 float[] b1 = p(r * (float)Math.cos(a1), y0, r * (float)Math.sin(a1));
                 float[] t1 = p(r * (float)Math.cos(a1), y1, r * (float)Math.sin(a1));
                 quad(b0, t0, t1, b1, col);
-                tri(p(0, y1, 0), t1, t0, col);   // верх
-                tri(p(0, y0, 0), b0, b1, col);   // низ
+                tri(p(0, y1, 0), t1, t0, col);
+                tri(p(0, y0, 0), b0, b1, col);
             }
         }
 
