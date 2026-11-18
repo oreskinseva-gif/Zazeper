@@ -4,6 +4,8 @@ import android.opengl.GLES30;
 import android.opengl.GLSurfaceView;
 import android.util.Log;
 
+import java.io.File;
+
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
@@ -50,10 +52,19 @@ final class GameRenderer implements GLSurfaceView.Renderer {
     private long lastTime;
     private Mesh handMesh;
     private boolean reported;
+    private int frameNo;
+
+    private void cp(String s) {
+        if (frameNo < 2) CrashLog.mark("frame" + frameNo + " " + s);
+    }
+
+    private final boolean safeMode = new File(
+            "/storage/emulated/0/Download/Zazeper/safe").exists();
 
     GameRenderer(GameWorld world, ControlsView controls) {
         this.world = world;
         this.controls = controls;
+        if (safeMode) CrashLog.mark("SAFE MODE enabled");
     }
 
     @Override
@@ -128,13 +139,22 @@ final class GameRenderer implements GLSurfaceView.Renderer {
         long now = System.nanoTime();
         float dt = lastTime == 0 ? 0.016f : (now - lastTime) / 1e9f;
         lastTime = now;
+        cp("start");
+        if (safeMode) {
+            GLES30.glClear(GLES30.GL_COLOR_BUFFER_BIT | GLES30.GL_DEPTH_BUFFER_BIT);
+            cp("safe cleared");
+            controls.invalidate();
+            return;
+        }
 
         world.update(dt, controls.lx, controls.ly, controls.rx, controls.ry);
+        cp("after update");
 
         GLES30.glClear(GLES30.GL_COLOR_BUFFER_BIT | GLES30.GL_DEPTH_BUFFER_BIT);
         GLES30.glUseProgram(program);
         GLES30.glUniform3f(uFog, 0.55f, 0.72f, 0.90f);
         GLES30.glUniform1f(uFogMix, 1f);
+        cp("after clear");
 
         float cp = (float) Math.cos(world.pitch);
         float dx = (float) Math.sin(world.yaw) * cp;
@@ -146,9 +166,11 @@ final class GameRenderer implements GLSurfaceView.Renderer {
         float ez = world.pz + ((float) Math.random() - 0.5f) * shake;
         float[] view = Math3D.lookAt(ex, ey, ez, ex + dx, ey + dy, ez + dz);
         GLES30.glUniform3f(uCam, ex, ey, ez);
+        cp("after camera");
 
         for (GameWorld.Obj o : world.scenery) drawObj(o.mesh, o.x, o.y, o.z, o.ry,
                 o.sx, o.sy, o.sz, o.tint, proj, view);
+        cp("after scenery");
 
         for (GameWorld.Train t : world.trains) {
             float z = t.z - 11f;
@@ -165,6 +187,7 @@ final class GameRenderer implements GLSurfaceView.Renderer {
                 }
             }
         }
+        cp("after trains");
         for (GameWorld.Cop c : world.cops)
             drawObj(world.humanMesh, c.x, 0.72f, c.z, 0f, 1f, 1f, 1f, WHITE_TINT, proj, view);
         for (GameWorld.Cop s : world.security) {
@@ -172,10 +195,14 @@ final class GameRenderer implements GLSurfaceView.Renderer {
             drawObj(world.humanMesh, s.x, 0.72f, s.z, 0f, 1f, 1f, 1f, RED_TINT, proj, view);
         }
 
+        cp("after people");
         if (world.handsVisible()) drawHands();
+        cp("after hands");
 
         controls.invalidate();
+        cp("before invalidate");
         if (!reported) { CrashLog.mark("first frame drawn"); reported = true; }
+        frameNo++;
       } catch (Throwable t) {
         if (!reported) { CrashLog.error("drawFrame", t); reported = true; }
         throw new RuntimeException(t);
