@@ -292,6 +292,11 @@ final class ControlsView extends SurfaceView {
         p.setColor(Color.WHITE);
         p.setTextSize(16 * d);
         c.drawText("Гонка по крышам и вагонам", w / 2f, h * 0.33f, p);
+        // заметная метка сборки: сразу видно, что установлена новая версия
+        p.setColor(Color.rgb(255, 150, 60));
+        p.setTextSize(12 * d);
+        c.drawText("▼ ВЕРСИЯ 8: камера поворачивается при зацепе ▼",
+                w / 2f, h * 0.385f, p);
         p.setColor(Color.rgb(150, 220, 255));
         p.setTextSize(14 * d);
         c.drawText("Левый стик — левая рука, правый — правая", w / 2f, h * 0.44f, p);

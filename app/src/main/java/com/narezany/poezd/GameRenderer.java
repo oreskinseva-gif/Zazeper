@@ -210,10 +210,14 @@ final class GameRenderer implements GLSurfaceView.Renderer {
         float dy = (float) Math.sin(world.pitch);
         float dz = -(float) Math.cos(world.yaw) * cp;
         float shake = world.flash * 0.035f;
+        boolean grabbing = world.state == GameWorld.PLAY && world.attached != null;
+        float bob = grabbing ? (float) Math.sin(world.time * 3.2f) * 0.045f : 0f;
         float ex = world.px + ((float) Math.random() - 0.5f) * shake;
-        float ey = world.py + 1.7f + ((float) Math.random() - 0.5f) * shake;
+        float ey = world.py + 1.7f + bob + ((float) Math.random() - 0.5f) * shake;
         float ez = world.pz + ((float) Math.random() - 0.5f) * shake;
         float[] view = Math3D.lookAt(ex, ey, ez, ex + dx, ey + dy, ez + dz);
+        if (grabbing && world.camRoll != 0f)
+            view = Math3D.rollView(view, world.camRoll);
         GLES30.glUniform3f(uCam, ex, ey, ez);
         cp("after camera");
 

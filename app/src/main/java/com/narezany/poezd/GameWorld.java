@@ -102,6 +102,7 @@ final class GameWorld {
 
     float px = 2.4f, py = 0f, pz = 0f;
     float yaw = 0f, pitch = -0.05f;
+    float camRoll, camRollTarget;   // плавный крен камеры при зацепе
     float vx, vy, vz;
     boolean onGround = true, onRoof;
     boolean leftHand, rightHand;
@@ -411,6 +412,7 @@ final class GameWorld {
             cops.add(c);
         }
         px = 2.4f; py = 0f; pz = 0f; yaw = 0f; pitch = -0.05f;
+        camRoll = 0f; camRollTarget = 0f;
         vx = vy = vz = 0f; onGround = true; onRoof = false;
         leftHand = rightHand = false; attached = null;
         leftCd = rightCd = shockCd = flash = time = hudTimer = 0f;
@@ -545,8 +547,23 @@ final class GameWorld {
         if (state != PLAY) {
             hudTimer -= dt;
             if (hudTimer <= 0) { hudTimer = 0.1f; refreshHud(); }
+            camRoll += (0f - camRoll) * Math.min(1f, dt * 2.5f);
             return;
         }
+
+        // Крен камеры при зацепе: тянет в сторону захваченной руки,
+        // плюс лёгкое покачивание от скорости. Плавно возвращается в ноль.
+        if (attached != null) {
+            float spd = Math.abs(attached.speed);
+            float lean = leftHand && !rightHand ? 1f
+                    : (rightHand && !leftHand ? -1f : 0f);
+            float sway = (float) Math.sin(time * 2.1f) * 0.055f
+                    * Math.min(1f, spd / 7f);
+            camRollTarget = lean * 0.22f + sway + 0.05f * Math.min(1f, spd / 10f);
+        } else {
+            camRollTarget = 0f;
+        }
+        camRoll += (camRollTarget - camRoll) * Math.min(1f, dt * 2.5f);
 
         leftCd = Math.max(0, leftCd - dt);
         rightCd = Math.max(0, rightCd - dt);

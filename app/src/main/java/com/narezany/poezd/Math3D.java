@@ -84,6 +84,18 @@ final class Math3D {
         return m;
     }
 
+    private static float[] rotZ(float a) {
+        float[] m = identity();
+        float c = (float) Math.cos(a), s = (float) Math.sin(a);
+        m[0] = c; m[1] = s; m[4] = -s; m[5] = c;
+        return m;
+    }
+
+    /** Крен камеры вокруг направления взгляда (боковой наклон картинки). */
+    static float[] rollView(float[] view, float a) {
+        return a == 0f ? view : mul(rotZ(a), view);
+    }
+
     /** Модельная матрица: перемещение, поворот вокруг Y, затем масштаб. */
     static float[] model(float x, float y, float z, float ry,
                          float sx, float sy, float sz) {
