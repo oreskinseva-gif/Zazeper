@@ -1,1 +1,69 @@
-cGFja2FnZSBjb20ubmFyZXphbnkucG9lemQ7CgppbXBvcnQgYW5kcm9pZC5hcHAuQWN0aXZpdHk7CmltcG9ydCBhbmRyb2lkLmFwcC5BY3Rpdml0eU1hbmFnZXI7CmltcG9ydCBhbmRyb2lkLmdyYXBoaWNzLkNvbG9yOwppbXBvcnQgYW5kcm9pZC5vcGVuZ2wuR0xTdXJmYWNlVmlldzsKaW1wb3J0IGFuZHJvaWQub3MuQnVuZGxlOwppbXBvcnQgYW5kcm9pZC52aWV3LlZpZXc7CmltcG9ydCBhbmRyb2lkLndpZGdldC5GcmFtZUxheW91dDsKCnB1YmxpYyBjbGFzcyBHYW1lQWN0aXZpdHkgZXh0ZW5kcyBBY3Rpdml0eSB7CgogICAgQE92ZXJyaWRlCiAgICBwcm90ZWN0ZWQgdm9pZCBvbkNyZWF0ZShCdW5kbGUgc2F2ZWRJbnN0YW5jZVN0YXRlKSB7CiAgICAgICAgc3VwZXIub25DcmVhdGUoc2F2ZWRJbnN0YW5jZVN0YXRlKTsKICAgICAgICBDcmFzaExvZy5pbml0KHRoaXMpOwogICAgICAgIENyYXNoTG9nLm1hcmsoIm9uQ3JlYXRlIHN0YXJ0Iik7CiAgICAgICAgaGlkZUJhcnMoKTsKCiAgICAgICAgR2FtZVdvcmxkIHdvcmxkID0gbmV3IEdhbWVXb3JsZCh0aGlzKTsKICAgICAgICBDcmFzaExvZy5tYXJrKCJ3b3JsZCBjcmVhdGVkLCBzY2VuZXJ5PSIgKyB3b3JsZC5zY2VuZXJ5LnNpemUoKSk7CiAgICAgICAgQ29udHJvbHNWaWV3IGNvbnRyb2xzID0gbmV3IENvbnRyb2xzVmlldyh0aGlzLCB3b3JsZCk7CiAgICAgICAgR0xTdXJmYWNlVmlldyBnbCA9IG5ldyBHTFN1cmZhY2VWaWV3KHRoaXMpOwoKICAgICAgICBBY3Rpdml0eU1hbmFnZXIgYW0gPSAoQWN0aXZpdHlNYW5hZ2VyKSBnZXRTeXN0ZW1TZXJ2aWNlKEFDVElWSVRZX1NFUlZJQ0UpOwogICAgICAgIGludCBnbGVzID0gYW0uZ2V0RGV2aWNlQ29uZmlndXJhdGlvbkluZm8oKS5yZXFHbEVzVmVyc2lvbjsKICAgICAgICBpbnQgdmVyc2lvbiA9IGdsZXMgPj0gMHgzMDAwMCA/IDMgOiAyOwogICAgICAgIENyYXNoTG9nLm1hcmsoIkdMRVMgdmVyc2lvbiBmcm9tIGRldmljZTogIiArIEludGVnZXIudG9IZXhTdHJpbmcoZ2xlcykgKyAiIC0+IHVzZSAiICsgdmVyc2lvbik7CiAgICAgICAgZ2wuc2V0RUdMQ29udGV4dENsaWVudFZlcnNpb24odmVyc2lvbik7CiAgICAgICAgZ2wuc2V0UmVuZGVyZXIobmV3IEdhbWVSZW5kZXJlcih3b3JsZCwgY29udHJvbHMpKTsKICAgICAgICBnbC5zZXRSZW5kZXJNb2RlKEdMU3VyZmFjZVZpZXcuUkVOREVSTU9ERV9DT05USU5VT1VTTFkpOwogICAgICAgIENyYXNoTG9nLm1hcmsoInJlbmRlcmVyIHNldCIpOwoKICAgICAgICBGcmFtZUxheW91dCByb290ID0gbmV3IEZyYW1lTGF5b3V0KHRoaXMpOwogICAgICAgIHJvb3Quc2V0QmFja2dyb3VuZENvbG9yKENvbG9yLkJMQUNLKTsKICAgICAgICByb290LmFkZFZpZXcoZ2wsIG5ldyBGcmFtZUxheW91dC5MYXlvdXRQYXJhbXMoCiAgICAgICAgICAgICAgICBGcmFtZUxheW91dC5MYXlvdXRQYXJhbXMuTUFUQ0hfUEFSRU5ULCBGcmFtZUxheW91dC5MYXlvdXRQYXJhbXMuTUFUQ0hfUEFSRU5UKSk7CiAgICAgICAgcm9vdC5hZGRWaWV3KGNvbnRyb2xzLCBuZXcgRnJhbWVMYXlvdXQuTGF5b3V0UGFyYW1zKAogICAgICAgICAgICAgICAgRnJhbWVMYXlvdXQuTGF5b3V0UGFyYW1zLk1BVENIX1BBUkVOVCwgRnJhbWVMYXlvdXQuTGF5b3V0UGFyYW1zLk1BVENIX1BBUkVOVCkpOwogICAgICAgIHNldENvbnRlbnRWaWV3KHJvb3QpOwogICAgICAgIENyYXNoTG9nLm1hcmsoImNvbnRlbnQgdmlldyBzZXQiKTsKICAgIH0KCiAgICBwcml2YXRlIHZvaWQgaGlkZUJhcnMoKSB7CiAgICAgICAgZ2V0V2luZG93KCkuZ2V0RGVjb3JWaWV3KCkuc2V0U3lzdGVtVWlWaXNpYmlsaXR5KAogICAgICAgICAgICAgICAgVmlldy5TWVNURU1fVUlfRkxBR19GVUxMU0NSRUVOCiAgICAgICAgICAgICAgICAgICAgICAgIHwgVmlldy5TWVNURU1fVUlfRkxBR19ISURFX05BVklHQVRJT04KICAgICAgICAgICAgICAgICAgICAgICAgfCBWaWV3LlNZU1RFTV9VSV9GTEFHX0lNTUVSU0lWRV9TVElDS1kKICAgICAgICAgICAgICAgICAgICAgICAgfCBWaWV3LlNZU1RFTV9VSV9GTEFHX0xBWU9VVF9GVUxMU0NSRUVOKTsKICAgIH0KCiAgICBAT3ZlcnJpZGUKICAgIHByb3RlY3RlZCB2b2lkIG9uUmVzdW1lKCkgewogICAgICAgIHN1cGVyLm9uUmVzdW1lKCk7CiAgICAgICAgU291bmQuZ2V0KCkuc3RhcnQoKTsKICAgIH0KCiAgICBAT3ZlcnJpZGUKICAgIHByb3RlY3RlZCB2b2lkIG9uUGF1c2UoKSB7CiAgICAgICAgU291bmQuZ2V0KCkuc3RvcCgpOwogICAgICAgIHN1cGVyLm9uUGF1c2UoKTsKICAgIH0KCiAgICBAT3ZlcnJpZGUKICAgIHB1YmxpYyB2b2lkIG9uV2luZG93Rm9jdXNDaGFuZ2VkKGJvb2xlYW4gaGFzRm9jdXMpIHsKICAgICAgICBzdXBlci5vbldpbmRvd0ZvY3VzQ2hhbmdlZChoYXNGb2N1cyk7CiAgICAgICAgaWYgKGhhc0ZvY3VzKSBoaWRlQmFycygpOwogICAgfQp9Cg==
+package com.narezany.poezd;
+
+import android.app.Activity;
+import android.app.ActivityManager;
+import android.graphics.Color;
+import android.opengl.GLSurfaceView;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.FrameLayout;
+
+public class GameActivity extends Activity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        CrashLog.init(this);
+        CrashLog.mark("onCreate start");
+        hideBars();
+
+        GameWorld world = new GameWorld(this);
+        CrashLog.mark("world created, scenery=" + world.scenery.size());
+        ControlsView controls = new ControlsView(this, world);
+        GLSurfaceView gl = new GLSurfaceView(this);
+
+        ActivityManager am = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
+        int gles = am.getDeviceConfigurationInfo().reqGlEsVersion;
+        int version = gles >= 0x30000 ? 3 : 2;
+        CrashLog.mark("GLES version from device: " + Integer.toHexString(gles) + " -> use " + version);
+        gl.setEGLContextClientVersion(version);
+        gl.setRenderer(new GameRenderer(world, controls));
+        gl.setRenderMode(GLSurfaceView.RENDERMODE_CONTINUOUSLY);
+        CrashLog.mark("renderer set");
+
+        FrameLayout root = new FrameLayout(this);
+        root.setBackgroundColor(Color.BLACK);
+        root.addView(gl, new FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
+        root.addView(controls, new FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
+        setContentView(root);
+        CrashLog.mark("content view set");
+    }
+
+    private void hideBars() {
+        getWindow().getDecorView().setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Sound.get().start();
+    }
+
+    @Override
+    protected void onPause() {
+        Sound.get().stop();
+        super.onPause();
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) hideBars();
+    }
+}

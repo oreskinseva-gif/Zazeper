@@ -1,1 +1,91 @@
-cGFja2FnZSBjb20ubmFyZXphbnkucG9lemQ7CgppbXBvcnQgYW5kcm9pZC5tZWRpYS5BdWRpb0Zvcm1hdDsKaW1wb3J0IGFuZHJvaWQubWVkaWEuQXVkaW9NYW5hZ2VyOwppbXBvcnQgYW5kcm9pZC5tZWRpYS5BdWRpb1RyYWNrOwoKLyoqINCf0YDQvtGG0LXQtNGD0YDQvdGL0Lkg0LfQstGD0Log0LHQtdC3INGE0LDQudC70L7Qsjog0LPRg9C7INC/0L7QtdC30LTQsCwg0YHQuNCz0L3QsNC70YssINGC0L7Quiwg0YHQuNGA0LXQvdCwLiAqLwpmaW5hbCBjbGFzcyBTb3VuZCB7CiAgICBwcml2YXRlIHN0YXRpYyBmaW5hbCBTb3VuZCBJTlNUQU5DRSA9IG5ldyBTb3VuZCgpOwogICAgcHJpdmF0ZSBzdGF0aWMgZmluYWwgaW50IFJBVEUgPSAyMjA1MDsKCiAgICBwcml2YXRlIEF1ZGlvVHJhY2sgdHJhY2s7CiAgICBwcml2YXRlIFRocmVhZCB0aHJlYWQ7CiAgICBwcml2YXRlIHZvbGF0aWxlIGJvb2xlYW4gcnVubmluZzsKICAgIHByaXZhdGUgdm9sYXRpbGUgZmxvYXQgZW5naW5lOwogICAgcHJpdmF0ZSB2b2xhdGlsZSBmbG9hdCBiZWVwRnJlcTsKICAgIHByaXZhdGUgdm9sYXRpbGUgZmxvYXQgYmVlcExlZnQ7CiAgICBwcml2YXRlIHZvbGF0aWxlIGZsb2F0IHNpcmVuTGVmdDsKCiAgICBzdGF0aWMgU291bmQgZ2V0KCkgeyByZXR1cm4gSU5TVEFOQ0U7IH0KCiAgICB2b2lkIHN0YXJ0KCkgewogICAgICAgIGlmIChydW5uaW5nKSByZXR1cm47CiAgICAgICAgdHJ5IHsKICAgICAgICAgICAgaW50IGJ1ZiA9IEF1ZGlvVHJhY2suZ2V0TWluQnVmZmVyU2l6ZShSQVRFLCBBdWRpb0Zvcm1hdC5DSEFOTkVMX09VVF9NT05PLAogICAgICAgICAgICAgICAgICAgIEF1ZGlvRm9ybWF0LkVOQ09ESU5HX1BDTV8xNkJJVCk7CiAgICAgICAgICAgIGlmIChidWYgPCAyMDQ4KSBidWYgPSA0MDk2OwogICAgICAgICAgICB0cmFjayA9IG5ldyBBdWRpb1RyYWNrKEF1ZGlvTWFuYWdlci5TVFJFQU1fTVVTSUMsIFJBVEUsCiAgICAgICAgICAgICAgICAgICAgQXVkaW9Gb3JtYXQuQ0hBTk5FTF9PVVRfTU9OTywgQXVkaW9Gb3JtYXQuRU5DT0RJTkdfUENNXzE2QklULAogICAgICAgICAgICAgICAgICAgIGJ1ZiwgQXVkaW9UcmFjay5NT0RFX1NUUkVBTSk7CiAgICAgICAgICAgIHRyYWNrLnNldFZvbHVtZSgwLjU1Zik7CiAgICAgICAgICAgIHRyYWNrLnBsYXkoKTsKICAgICAgICAgICAgcnVubmluZyA9IHRydWU7CiAgICAgICAgICAgIHRocmVhZCA9IG5ldyBUaHJlYWQobmV3IFJ1bm5hYmxlKCkgewogICAgICAgICAgICAgICAgQE92ZXJyaWRlIHB1YmxpYyB2b2lkIHJ1bigpIHsgbG9vcCgpOyB9CiAgICAgICAgICAgIH0sICJzb3VuZCIpOwogICAgICAgICAgICB0aHJlYWQuc3RhcnQoKTsKICAgICAgICB9IGNhdGNoIChUaHJvd2FibGUgaWdub3JlZCkgewogICAgICAgICAgICBydW5uaW5nID0gZmFsc2U7CiAgICAgICAgfQogICAgfQoKICAgIHZvaWQgc2V0RW5naW5lKGZsb2F0IHYpIHsgZW5naW5lID0gTWF0aDNELmNsYW1wKHYsIDBmLCAxZik7IH0KCiAgICB2b2lkIGJlZXAoZmxvYXQgZnJlcSwgZmxvYXQgc2Vjb25kcykgewogICAgICAgIGJlZXBGcmVxID0gZnJlcTsKICAgICAgICBiZWVwTGVmdCA9IHNlY29uZHM7CiAgICB9CgogICAgdm9pZCB6YXAoKSB7IGJlZXAoOTBmLCAwLjM1Zik7IH0KCiAgICB2b2lkIHNpcmVuKCkgeyBzaXJlbkxlZnQgPSAyLjVmOyB9CgogICAgcHJpdmF0ZSB2b2lkIGxvb3AoKSB7CiAgICAgICAgc2hvcnRbXSBkYXRhID0gbmV3IHNob3J0WzUxMl07CiAgICAgICAgZG91YmxlIHBoYXNlID0gMCwgYnAgPSAwLCBzcCA9IDA7CiAgICAgICAgd2hpbGUgKHJ1bm5pbmcpIHsKICAgICAgICAgICAgZm9yIChpbnQgaSA9IDA7IGkgPCBkYXRhLmxlbmd0aDsgaSsrKSB7CiAgICAgICAgICAgICAgICBkb3VibGUgdiA9IE1hdGguc2luKHBoYXNlKSAqICgwLjA1ICsgZW5naW5lICogMC4xNik7CiAgICAgICAgICAgICAgICBwaGFzZSArPSAyICogTWF0aC5QSSAqICg1NSArIGVuZ2luZSAqIDE5MCkgLyBSQVRFOwogICAgICAgICAgICAgICAgaWYgKHBoYXNlID4gMiAqIE1hdGguUEkpIHBoYXNlIC09IDIgKiBNYXRoLlBJOwoKICAgICAgICAgICAgICAgIGlmIChiZWVwTGVmdCA+IDApIHsKICAgICAgICAgICAgICAgICAgICB2ICs9IE1hdGguc2luKGJwKSAqIDAuMjIgKiBNYXRoLm1pbigxZiwgYmVlcExlZnQgKiA0Zik7CiAgICAgICAgICAgICAgICAgICAgYnAgKz0gMiAqIE1hdGguUEkgKiBiZWVwRnJlcSAvIFJBVEU7CiAgICAgICAgICAgICAgICAgICAgYmVlcExlZnQgLT0gMWYgLyBSQVRFOwogICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgaWYgKHNpcmVuTGVmdCA+IDApIHsKICAgICAgICAgICAgICAgICAgICBkb3VibGUgZiA9IDUyMCArIDI2MCAqIE1hdGguc2luKHNwICogMik7CiAgICAgICAgICAgICAgICAgICAgdiArPSBNYXRoLnNpbihzcCAqIGYgLyA2MC4wKSAqIDAuMTQ7CiAgICAgICAgICAgICAgICAgICAgc3AgKz0gMC4wNjsKICAgICAgICAgICAgICAgICAgICBzaXJlbkxlZnQgLT0gMWYgLyBSQVRFOwogICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgZGF0YVtpXSA9IChzaG9ydCkgKE1hdGgzRC5jbGFtcCgoZmxvYXQpIHYsIC0xZiwgMWYpICogMjYwMDBmKTsKICAgICAgICAgICAgfQogICAgICAgICAgICB0cnkgewogICAgICAgICAgICAgICAgaWYgKHRyYWNrICE9IG51bGwpIHRyYWNrLndyaXRlKGRhdGEsIDAsIGRhdGEubGVuZ3RoKTsKICAgICAgICAgICAgICAgIGVsc2UgYnJlYWs7CiAgICAgICAgICAgIH0gY2F0Y2ggKFRocm93YWJsZSB0KSB7CiAgICAgICAgICAgICAgICBicmVhazsKICAgICAgICAgICAgfQogICAgICAgIH0KICAgIH0KCiAgICB2b2lkIHN0b3AoKSB7CiAgICAgICAgcnVubmluZyA9IGZhbHNlOwogICAgICAgIHRyeSB7IGlmICh0cmFjayAhPSBudWxsKSB7IHRyYWNrLnN0b3AoKTsgdHJhY2sucmVsZWFzZSgpOyB9IH0gY2F0Y2ggKFRocm93YWJsZSBpZ25vcmVkKSB7fQogICAgICAgIHRyYWNrID0gbnVsbDsKICAgICAgICB0aHJlYWQgPSBudWxsOwogICAgfQp9Cg==
+package com.narezany.poezd;
+
+import android.media.AudioFormat;
+import android.media.AudioManager;
+import android.media.AudioTrack;
+
+/** Процедурный звук без файлов: гул поезда, сигналы, ток, сирена. */
+final class Sound {
+    private static final Sound INSTANCE = new Sound();
+    private static final int RATE = 22050;
+
+    private AudioTrack track;
+    private Thread thread;
+    private volatile boolean running;
+    private volatile float engine;
+    private volatile float beepFreq;
+    private volatile float beepLeft;
+    private volatile float sirenLeft;
+
+    static Sound get() { return INSTANCE; }
+
+    void start() {
+        if (running) return;
+        try {
+            int buf = AudioTrack.getMinBufferSize(RATE, AudioFormat.CHANNEL_OUT_MONO,
+                    AudioFormat.ENCODING_PCM_16BIT);
+            if (buf < 2048) buf = 4096;
+            track = new AudioTrack(AudioManager.STREAM_MUSIC, RATE,
+                    AudioFormat.CHANNEL_OUT_MONO, AudioFormat.ENCODING_PCM_16BIT,
+                    buf, AudioTrack.MODE_STREAM);
+            track.setVolume(0.55f);
+            track.play();
+            running = true;
+            thread = new Thread(new Runnable() {
+                @Override public void run() { loop(); }
+            }, "sound");
+            thread.start();
+        } catch (Throwable ignored) {
+            running = false;
+        }
+    }
+
+    void setEngine(float v) { engine = Math3D.clamp(v, 0f, 1f); }
+
+    void beep(float freq, float seconds) {
+        beepFreq = freq;
+        beepLeft = seconds;
+    }
+
+    void zap() { beep(90f, 0.35f); }
+
+    void siren() { sirenLeft = 2.5f; }
+
+    private void loop() {
+        short[] data = new short[512];
+        double phase = 0, bp = 0, sp = 0;
+        while (running) {
+            for (int i = 0; i < data.length; i++) {
+                double v = Math.sin(phase) * (0.05 + engine * 0.16);
+                phase += 2 * Math.PI * (55 + engine * 190) / RATE;
+                if (phase > 2 * Math.PI) phase -= 2 * Math.PI;
+
+                if (beepLeft > 0) {
+                    v += Math.sin(bp) * 0.22 * Math.min(1f, beepLeft * 4f);
+                    bp += 2 * Math.PI * beepFreq / RATE;
+                    beepLeft -= 1f / RATE;
+                }
+                if (sirenLeft > 0) {
+                    double f = 520 + 260 * Math.sin(sp * 2);
+                    v += Math.sin(sp * f / 60.0) * 0.14;
+                    sp += 0.06;
+                    sirenLeft -= 1f / RATE;
+                }
+                data[i] = (short) (Math3D.clamp((float) v, -1f, 1f) * 26000f);
+            }
+            try {
+                if (track != null) track.write(data, 0, data.length);
+                else break;
+            } catch (Throwable t) {
+                break;
+            }
+        }
+    }
+
+    void stop() {
+        running = false;
+        try { if (track != null) { track.stop(); track.release(); } } catch (Throwable ignored) {}
+        track = null;
+        thread = null;
+    }
+}

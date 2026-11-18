@@ -1,1 +1,295 @@
-cGFja2FnZSBjb20ubmFyZXphbnkucG9lemQ7CgppbXBvcnQgYW5kcm9pZC5jb250ZW50LkNvbnRleHQ7CmltcG9ydCBhbmRyb2lkLmdyYXBoaWNzLkNhbnZhczsKaW1wb3J0IGFuZHJvaWQuZ3JhcGhpY3MuQ29sb3I7CmltcG9ydCBhbmRyb2lkLmdyYXBoaWNzLlBhaW50OwppbXBvcnQgYW5kcm9pZC5ncmFwaGljcy5QaXhlbEZvcm1hdDsKaW1wb3J0IGFuZHJvaWQudmlldy5Nb3Rpb25FdmVudDsKaW1wb3J0IGFuZHJvaWQudmlldy5TdXJmYWNlVmlldzsKCmltcG9ydCBqYXZhLnV0aWwuQXJyYXlMaXN0OwppbXBvcnQgamF2YS51dGlsLkxpc3Q7CgovKiog0J/RgNC+0LfRgNCw0YfQvdGL0Lkg0YHQu9C+0Lkg0L/QvtCy0LXRgNGFIDNEOiDQvNC10L3Rjiwg0LfQsNC00LDQvdC40Y8sINC00LbQvtC50YHRgtC40LrQuCwg0LvQvtCzLCDQvNC40L3QuC3QutCw0YDRgtCwLiAqLwpmaW5hbCBjbGFzcyBDb250cm9sc1ZpZXcgZXh0ZW5kcyBTdXJmYWNlVmlldyB7CiAgICB2b2xhdGlsZSBmbG9hdCBseCwgbHksIHJ4LCByeTsKCiAgICBwcml2YXRlIGZpbmFsIEdhbWVXb3JsZCB3b3JsZDsKICAgIHByaXZhdGUgZmluYWwgUGFpbnQgcCA9IG5ldyBQYWludChQYWludC5BTlRJX0FMSUFTX0ZMQUcpOwogICAgcHJpdmF0ZSBmaW5hbCBmbG9hdCByYWRpdXM7CiAgICBwcml2YXRlIGxvbmcgbGVmdElkID0gLTEsIHJpZ2h0SWQgPSAtMTsKICAgIHByaXZhdGUgZmxvYXQgbG94LCBsb3ksIHJveCwgcm95OwoKICAgIENvbnRyb2xzVmlldyhDb250ZXh0IGN0eCwgR2FtZVdvcmxkIHdvcmxkKSB7CiAgICAgICAgc3VwZXIoY3R4KTsKICAgICAgICB0aGlzLndvcmxkID0gd29ybGQ7CiAgICAgICAgc2V0Wk9yZGVyT25Ub3AodHJ1ZSk7CiAgICAgICAgZ2V0SG9sZGVyKCkuc2V0Rm9ybWF0KFBpeGVsRm9ybWF0LlRSQU5TTFVDRU5UKTsKICAgICAgICByYWRpdXMgPSA0NGYgKiBjdHguZ2V0UmVzb3VyY2VzKCkuZ2V0RGlzcGxheU1ldHJpY3MoKS5kZW5zaXR5OwogICAgfQoKICAgIHByaXZhdGUgdm9pZCBzZXRMZWZ0KGZsb2F0IGR4LCBmbG9hdCBkeSkgewogICAgICAgIGx4ID0gTWF0aDNELmNsYW1wKGR4IC8gcmFkaXVzLCAtMWYsIDFmKTsKICAgICAgICBseSA9IE1hdGgzRC5jbGFtcChkeSAvIHJhZGl1cywgLTFmLCAxZik7CiAgICB9CgogICAgcHJpdmF0ZSB2b2lkIHNldFJpZ2h0KGZsb2F0IGR4LCBmbG9hdCBkeSkgewogICAgICAgIHJ4ID0gTWF0aDNELmNsYW1wKGR4IC8gcmFkaXVzLCAtMWYsIDFmKTsKICAgICAgICByeSA9IE1hdGgzRC5jbGFtcChkeSAvIHJhZGl1cywgLTFmLCAxZik7CiAgICB9CgogICAgQE92ZXJyaWRlCiAgICBwdWJsaWMgYm9vbGVhbiBvblRvdWNoRXZlbnQoTW90aW9uRXZlbnQgZSkgewogICAgICAgIGludCBhY3Rpb24gPSBlLmdldEFjdGlvbk1hc2tlZCgpOwogICAgICAgIGlmICh3b3JsZC5zdGF0ZSAhPSBHYW1lV29ybGQuUExBWSkgewogICAgICAgICAgICBpZiAoYWN0aW9uID09IE1vdGlvbkV2ZW50LkFDVElPTl9ET1dOKSB7CiAgICAgICAgICAgICAgICB3b3JsZC5zdGFydCgpOwogICAgICAgICAgICAgICAgbHggPSBseSA9IHJ4ID0gcnkgPSAwOwogICAgICAgICAgICAgICAgbGVmdElkID0gcmlnaHRJZCA9IC0xOwogICAgICAgICAgICB9CiAgICAgICAgICAgIHJldHVybiB0cnVlOwogICAgICAgIH0KICAgICAgICBpbnQgdyA9IGdldFdpZHRoKCk7CiAgICAgICAgaW50IGlkeCA9IGUuZ2V0QWN0aW9uSW5kZXgoKTsKICAgICAgICBpbnQgaWQgPSBlLmdldFBvaW50ZXJJZChpZHgpOwogICAgICAgIGZsb2F0IHggPSBlLmdldFgoaWR4KSwgeSA9IGUuZ2V0WShpZHgpOwoKICAgICAgICBzd2l0Y2ggKGFjdGlvbikgewogICAgICAgICAgICBjYXNlIE1vdGlvbkV2ZW50LkFDVElPTl9ET1dOOgogICAgICAgICAgICBjYXNlIE1vdGlvbkV2ZW50LkFDVElPTl9QT0lOVEVSX0RPV046CiAgICAgICAgICAgICAgICBpZiAoeCA8IHcgKiAwLjVmICYmIGxlZnRJZCA9PSAtMSkgeyBsZWZ0SWQgPSBpZDsgbG94ID0geDsgbG95ID0geTsgfQogICAgICAgICAgICAgICAgZWxzZSBpZiAoeCA+PSB3ICogMC41ZiAmJiByaWdodElkID09IC0xKSB7IHJpZ2h0SWQgPSBpZDsgcm94ID0geDsgcm95ID0geTsgfQogICAgICAgICAgICAgICAgYnJlYWs7CiAgICAgICAgICAgIGNhc2UgTW90aW9uRXZlbnQuQUNUSU9OX01PVkU6CiAgICAgICAgICAgICAgICBmb3IgKGludCBpID0gMDsgaSA8IGUuZ2V0UG9pbnRlckNvdW50KCk7IGkrKykgewogICAgICAgICAgICAgICAgICAgIGludCBwaWQgPSBlLmdldFBvaW50ZXJJZChpKTsKICAgICAgICAgICAgICAgICAgICBpZiAocGlkID09IGxlZnRJZCkgc2V0TGVmdChlLmdldFgoaSkgLSBsb3gsIGUuZ2V0WShpKSAtIGxveSk7CiAgICAgICAgICAgICAgICAgICAgZWxzZSBpZiAocGlkID09IHJpZ2h0SWQpIHNldFJpZ2h0KGUuZ2V0WChpKSAtIHJveCwgZS5nZXRZKGkpIC0gcm95KTsKICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgIGJyZWFrOwogICAgICAgICAgICBjYXNlIE1vdGlvbkV2ZW50LkFDVElPTl9VUDoKICAgICAgICAgICAgY2FzZSBNb3Rpb25FdmVudC5BQ1RJT05fUE9JTlRFUl9VUDoKICAgICAgICAgICAgY2FzZSBNb3Rpb25FdmVudC5BQ1RJT05fQ0FOQ0VMOgogICAgICAgICAgICAgICAgaWYgKGlkID09IGxlZnRJZCkgeyBsZWZ0SWQgPSAtMTsgbHggPSBseSA9IDA7IH0KICAgICAgICAgICAgICAgIGVsc2UgaWYgKGlkID09IHJpZ2h0SWQpIHsgcmlnaHRJZCA9IC0xOyByeCA9IHJ5ID0gMDsgfQogICAgICAgICAgICAgICAgYnJlYWs7CiAgICAgICAgICAgIGRlZmF1bHQ6CiAgICAgICAgICAgICAgICBicmVhazsKICAgICAgICB9CiAgICAgICAgcmV0dXJuIHRydWU7CiAgICB9CgogICAgQE92ZXJyaWRlCiAgICBwcm90ZWN0ZWQgdm9pZCBvbkRyYXcoQ2FudmFzIGMpIHsKICAgICAgICBzdXBlci5vbkRyYXcoYyk7CiAgICAgICAgZmxvYXQgZCA9IGdldFJlc291cmNlcygpLmdldERpc3BsYXlNZXRyaWNzKCkuZGVuc2l0eTsKICAgICAgICBpbnQgdyA9IGdldFdpZHRoKCksIGggPSBnZXRIZWlnaHQoKTsKICAgICAgICBHYW1lV29ybGQuSHVkIGh1ZCA9IHdvcmxkLmh1ZDsKCiAgICAgICAgaWYgKGh1ZC5tZW51KSB7CiAgICAgICAgICAgIGRyYXdNZW51KGMsIHcsIGgsIGQpOwogICAgICAgICAgICByZXR1cm47CiAgICAgICAgfQoKICAgICAgICAvLyDQu9C+0LMg0YHQvtCx0YvRgtC40LkKICAgICAgICBwLnNldFN0eWxlKFBhaW50LlN0eWxlLkZJTEwpOwogICAgICAgIHAuc2V0Q29sb3IoMHhCODAwMDAwMCk7CiAgICAgICAgYy5kcmF3UmVjdCgwLCAwLCB3LCAoMTQgKyBodWQubGluZUNvdW50ICogMTQpICogZCwgcCk7CiAgICAgICAgcC5zZXRUZXh0U2l6ZSgxMi41ZiAqIGQpOwogICAgICAgIHAuc2V0VGV4dEFsaWduKFBhaW50LkFsaWduLkxFRlQpOwogICAgICAgIGZsb2F0IHR5ID0gMTYgKiBkOwogICAgICAgIGZvciAoaW50IGkgPSAwOyBpIDwgaHVkLmxpbmVDb3VudDsgaSsrKSB7CiAgICAgICAgICAgIFN0cmluZyBzID0gaHVkLmxpbmVzW2ldID09IG51bGwgPyAiIiA6IGh1ZC5saW5lc1tpXTsKICAgICAgICAgICAgcC5zZXRDb2xvcihzLmNvbnRhaW5zKCLQotCR0YjQvdC40LoiKSB8fCBzLmNvbnRhaW5zKCLQvtGF0YDQsNC9IikgfHwgcy5jb250YWlucygi0LfQsNC00LXRgNC20LDQuyIpCiAgICAgICAgICAgICAgICAgICAgPyBDb2xvci5yZ2IoMjU1LCAxMTAsIDkwKQogICAgICAgICAgICAgICAgICAgIDogKHMuY29udGFpbnMoItCj0LTQsNGAIikgfHwgcy5jb250YWlucygi0YLQvtC60L7QvCIpCiAgICAgICAgICAgICAgICAgICAgICAgID8gQ29sb3IucmdiKDI1NSwgMjIwLCA4MCkgOiBDb2xvci5XSElURSkpOwogICAgICAgICAgICBjLmRyYXdUZXh0KHMsIDEwICogZCwgdHksIHApOwogICAgICAgICAgICB0eSArPSAxNCAqIGQ7CiAgICAgICAgfQoKICAgICAgICAvLyDQt9Cw0LTQsNC90LjQtQogICAgICAgIGZsb2F0IHRvcCA9ICgxOCArIGh1ZC5saW5lQ291bnQgKiAxNCkgKiBkOwogICAgICAgIHAuc2V0Q29sb3IoMHhBQTEwMjA0MCk7CiAgICAgICAgYy5kcmF3UmVjdCg4ICogZCwgdG9wLCB3ICogMC42MmYsIHRvcCArIDQ0ICogZCwgcCk7CiAgICAgICAgcC5zZXRDb2xvcihDb2xvci5yZ2IoMTIwLCAyMDAsIDI1NSkpOwogICAgICAgIHAuc2V0VGV4dFNpemUoMTEgKiBkKTsKICAgICAgICBjLmRyYXdUZXh0KCLQl9CQ0JTQkNCd0JjQlSAiICsgKHdvcmxkLm1pc3Npb25JbmRleCArIDEpICsgIi80ICAgKzEwMCDQvtGH0LrQvtCyIiwKICAgICAgICAgICAgICAgIDE0ICogZCwgdG9wICsgMTQgKiBkLCBwKTsKICAgICAgICBwLnNldENvbG9yKENvbG9yLldISVRFKTsKICAgICAgICBwLnNldFRleHRTaXplKDEzLjVmICogZCk7CiAgICAgICAgYy5kcmF3VGV4dChodWQubWlzc2lvbiwgMTQgKiBkLCB0b3AgKyAzMSAqIGQsIHApOwogICAgICAgIHAuc2V0Q29sb3IoMHgzM0ZGRkZGRik7CiAgICAgICAgYy5kcmF3UmVjdCgxNCAqIGQsIHRvcCArIDM2ICogZCwgdyAqIDAuNjJmIC0gMTQgKiBkLCB0b3AgKyA0MCAqIGQsIHApOwogICAgICAgIHAuc2V0Q29sb3IoQ29sb3IucmdiKDkwLCAyMjAsIDE0MCkpOwogICAgICAgIGMuZHJhd1JlY3QoMTQgKiBkLCB0b3AgKyAzNiAqIGQsCiAgICAgICAgICAgICAgICAoMTQgKiBkKSArICh3ICogMC42MmYgLSAyOCAqIGQpICogaHVkLm1pc3Npb25Qcm9ncmVzcywgdG9wICsgNDAgKiBkLCBwKTsKCiAgICAgICAgLy8g0YHQutC+0YDQvtGB0YLRjCwg0YHRh9GR0YIsINCy0YDQtdC80Y8KICAgICAgICBwLnNldFRleHRBbGlnbihQYWludC5BbGlnbi5SSUdIVCk7CiAgICAgICAgcC5zZXRDb2xvcihDb2xvci5XSElURSk7CiAgICAgICAgcC5zZXRUZXh0U2l6ZSgyMCAqIGQpOwogICAgICAgIGMuZHJhd1RleHQoaHVkLnNwZWVkLCB3IC0gMTAgKiBkLCAyMyAqIGQsIHApOwogICAgICAgIHAuc2V0VGV4dFNpemUoMTIgKiBkKTsKICAgICAgICBjLmRyYXdUZXh0KGh1ZC50cmFpbiwgdyAtIDEwICogZCwgMzggKiBkLCBwKTsKICAgICAgICBwLnNldENvbG9yKENvbG9yLnJnYigyNTUsIDIyMCwgMTIwKSk7CiAgICAgICAgYy5kcmF3VGV4dCgi0L7Rh9C60LggIiArIGh1ZC5zY29yZSArICIgICDQu9GD0YfRiNC40LkgIiArIGh1ZC5iZXN0LCB3IC0gMTAgKiBkLCA1MyAqIGQsIHApOwogICAgICAgIHAuc2V0Q29sb3IoQ29sb3IucmdiKDIwMCwgMjIwLCAyNDApKTsKICAgICAgICBjLmRyYXdUZXh0KGh1ZC50aW1lciwgdyAtIDEwICogZCwgNjcgKiBkLCBwKTsKICAgICAgICBwLnNldFRleHRBbGlnbihQYWludC5BbGlnbi5MRUZUKTsKCiAgICAgICAgLy8g0YLRgNC10LLQvtCz0LAKICAgICAgICBpZiAoaHVkLmFsZXJ0ID4gMC4wMmYpIHsKICAgICAgICAgICAgZmxvYXQgYncgPSAxMjAgKiBkOwogICAgICAgICAgICBwLnNldENvbG9yKDB4ODgwMDAwMDApOwogICAgICAgICAgICBjLmRyYXdSZWN0KHcgLyAyZiAtIGJ3IC8gMiwgOCAqIGQsIHcgLyAyZiArIGJ3IC8gMiwgMTYgKiBkLCBwKTsKICAgICAgICAgICAgcC5zZXRDb2xvcihDb2xvci5yZ2IoMjU1LCAoaW50KSAoMjAwIC0gMTYwICogaHVkLmFsZXJ0KSwgNjApKTsKICAgICAgICAgICAgYy5kcmF3UmVjdCh3IC8gMmYgLSBidyAvIDIsIDggKiBkLAogICAgICAgICAgICAgICAgICAgIHcgLyAyZiAtIGJ3IC8gMiArIGJ3ICogaHVkLmFsZXJ0LCAxNiAqIGQsIHApOwogICAgICAgICAgICBwLnNldFRleHRBbGlnbihQYWludC5BbGlnbi5DRU5URVIpOwogICAgICAgICAgICBwLnNldFRleHRTaXplKDEwICogZCk7CiAgICAgICAgICAgIHAuc2V0Q29sb3IoQ29sb3IuV0hJVEUpOwogICAgICAgICAgICBjLmRyYXdUZXh0KCLQotCR0KjQndCY0Jog0JLQmNCU0JjQoiIsIHcgLyAyZiwgMjggKiBkLCBwKTsKICAgICAgICAgICAgcC5zZXRUZXh0QWxpZ24oUGFpbnQuQWxpZ24uTEVGVCk7CiAgICAgICAgfQoKICAgICAgICAvLyDQtNC20L7QudGB0YLQuNC60Lgg0Lgg0L/QvtC00YHQutCw0LfQutC4INC30LDRhdCy0LDRgtCwCiAgICAgICAgZmxvYXQgamx5ID0gaCAqIDAuNzRmOwogICAgICAgIHAuc2V0U3R5bGUoUGFpbnQuU3R5bGUuU1RST0tFKTsKICAgICAgICBwLnNldFN0cm9rZVdpZHRoKDIgKiBkKTsKICAgICAgICBwLnNldENvbG9yKGh1ZC5sZWZ0UmVhZHkgPyBDb2xvci5yZ2IoOTAsIDIzMCwgMTQwKSA6IDB4NjZGRkZGRkYpOwogICAgICAgIGMuZHJhd0NpcmNsZSh3ICogMC4xOGYsIGpseSwgcmFkaXVzLCBwKTsKICAgICAgICBwLnNldENvbG9yKGh1ZC5yaWdodFJlYWR5ID8gQ29sb3IucmdiKDkwLCAyMzAsIDE0MCkgOiAweDY2RkZGRkZGKTsKICAgICAgICBjLmRyYXdDaXJjbGUodyAqIDAuODJmLCBqbHksIHJhZGl1cywgcCk7CiAgICAgICAgcC5zZXRTdHlsZShQYWludC5TdHlsZS5GSUxMKTsKICAgICAgICBwLnNldENvbG9yKGh1ZC5sZWZ0UmVhZHkgPyBDb2xvci5yZ2IoMTIwLCAyNTUsIDE3MCkgOiAweDg4RkZGRkZGKTsKICAgICAgICBjLmRyYXdDaXJjbGUodyAqIDAuMThmICsgbHggKiByYWRpdXMgKiAwLjQ1Ziwgamx5ICsgbHkgKiByYWRpdXMgKiAwLjQ1ZiwKICAgICAgICAgICAgICAgIHJhZGl1cyAqIDAuMzRmLCBwKTsKICAgICAgICBwLnNldENvbG9yKGh1ZC5yaWdodFJlYWR5ID8gQ29sb3IucmdiKDEyMCwgMjU1LCAxNzApIDogMHg4OEZGRkZGRik7CiAgICAgICAgYy5kcmF3Q2lyY2xlKHcgKiAwLjgyZiArIHJ4ICogcmFkaXVzICogMC40NWYsIGpseSArIHJ5ICogcmFkaXVzICogMC40NWYsCiAgICAgICAgICAgICAgICByYWRpdXMgKiAwLjM0ZiwgcCk7CgogICAgICAgIHAuc2V0VGV4dEFsaWduKFBhaW50LkFsaWduLkNFTlRFUik7CiAgICAgICAgcC5zZXRUZXh0U2l6ZSgxMSAqIGQpOwogICAgICAgIHAuc2V0Q29sb3IoQ29sb3IuV0hJVEUpOwogICAgICAgIGMuZHJhd1RleHQoItCb0JXQktCQ0K8g0KDQo9Ca0JAiLCB3ICogMC4xOGYsIGpseSArIHJhZGl1cyArIDE2ICogZCwgcCk7CiAgICAgICAgYy5kcmF3VGV4dCgi0J/QoNCQ0JLQkNCvINCg0KPQmtCQIiwgdyAqIDAuODJmLCBqbHkgKyByYWRpdXMgKyAxNiAqIGQsIHApOwogICAgICAgIGlmIChodWQubGVmdFJlYWR5KSB7CiAgICAgICAgICAgIHAuc2V0Q29sb3IoQ29sb3IucmdiKDEyMCwgMjU1LCAxNzApKTsKICAgICAgICAgICAgYy5kcmF3VGV4dCgi4peAINCi0K/QndCYIiwgdyAqIDAuMThmIC0gcmFkaXVzIC0gMzAgKiBkLCBqbHksIHApOwogICAgICAgIH0KICAgICAgICBpZiAoaHVkLnJpZ2h0UmVhZHkpIHsKICAgICAgICAgICAgcC5zZXRDb2xvcihDb2xvci5yZ2IoMTIwLCAyNTUsIDE3MCkpOwogICAgICAgICAgICBjLmRyYXdUZXh0KCLQotCv0J3QmCDilrYiLCB3ICogMC44MmYgKyByYWRpdXMgKyAzMCAqIGQsIGpseSwgcCk7CiAgICAgICAgfQogICAgICAgIHAuc2V0VGV4dEFsaWduKFBhaW50LkFsaWduLkxFRlQpOwoKICAgICAgICAvLyDQv9GA0LjRhtC10LsKICAgICAgICBwLnNldENvbG9yKDB4QUFGRkZGRkYpOwogICAgICAgIGMuZHJhd0NpcmNsZSh3IC8gMmYsIGggLyAyZiwgMyAqIGQsIHApOwoKICAgICAgICAvLyDQvNC40L3QuC3QutCw0YDRgtCwCiAgICAgICAgZmxvYXQgbXcgPSB3ICogMC40NGYsIG14ID0gdyAvIDJmIC0gbXcgLyAyLCBteSA9IGggLSAyMiAqIGQ7CiAgICAgICAgcC5zZXRDb2xvcigweDg4MDAwMDAwKTsKICAgICAgICBjLmRyYXdSZWN0KG14LCBteSAtIDggKiBkLCBteCArIG13LCBteSArIDggKiBkLCBwKTsKICAgICAgICBwLnNldENvbG9yKDB4NjZGRkZGRkYpOwogICAgICAgIGMuZHJhd1JlY3QobXgsIG15IC0gMC41ZiAqIGQsIG14ICsgbXcsIG15ICsgMC41ZiAqIGQsIHApOwogICAgICAgIGZvciAoR2FtZVdvcmxkLlRyYWluIHQgOiB3b3JsZC50cmFpbnMpIHsKICAgICAgICAgICAgZmxvYXQgeCA9IG14ICsgbXcgKiBNYXRoM0QuY2xhbXAoKHQueiAtIHdvcmxkLnB6ICsgMTIwZikgLyAyNDBmLCAwLCAxKTsKICAgICAgICAgICAgcC5zZXRDb2xvcihHYW1lV29ybGQuQk9EWVt0LnR5cGVdWzBdID4gMC44ZiAmJiBHYW1lV29ybGQuQk9EWVt0LnR5cGVdWzFdIDwgMC4zZgogICAgICAgICAgICAgICAgICAgID8gQ29sb3IucmdiKDI1NSwgOTAsIDgwKSA6IENvbG9yLnJnYigxMjAsIDIyMCwgMjU1KSk7CiAgICAgICAgICAgIGMuZHJhd1JlY3QoeCAtIDIgKiBkLCBteSAtIDUgKiBkLCB4ICsgMiAqIGQsIG15ICsgNSAqIGQsIHApOwogICAgICAgIH0KICAgICAgICBmb3IgKEdhbWVXb3JsZC5Db3AgcyA6IHdvcmxkLnNlY3VyaXR5KSB7CiAgICAgICAgICAgIGlmICghcy5hY3RpdmUpIGNvbnRpbnVlOwogICAgICAgICAgICBmbG9hdCB4ID0gbXggKyBtdyAqIE1hdGgzRC5jbGFtcCgocy56IC0gd29ybGQucHogKyAxMjBmKSAvIDI0MGYsIDAsIDEpOwogICAgICAgICAgICBwLnNldENvbG9yKENvbG9yLlJFRCk7CiAgICAgICAgICAgIGMuZHJhd0NpcmNsZSh4LCBteSwgMyAqIGQsIHApOwogICAgICAgIH0KICAgICAgICBwLnNldENvbG9yKENvbG9yLnJnYigxMjAsIDI1NSwgMTcwKSk7CiAgICAgICAgYy5kcmF3Q2lyY2xlKG14ICsgbXcgLyAyLCBteSwgNCAqIGQsIHApOwoKICAgICAgICAvLyDQv9C+0LTRgdC60LDQt9C60LAKICAgICAgICBpZiAoaHVkLnRpcCAhPSBudWxsICYmICFodWQudGlwLmlzRW1wdHkoKSkgewogICAgICAgICAgICBwLnNldENvbG9yKDB4RUVGRkZGRkYpOwogICAgICAgICAgICBwLnNldFRleHRBbGlnbihQYWludC5BbGlnbi5DRU5URVIpOwogICAgICAgICAgICBwLnNldFRleHRTaXplKDExLjVmICogZCk7CiAgICAgICAgICAgIHdyYXBDZW50ZXIoYywgaHVkLnRpcCwgdyAvIDJmLCBoIC0gNDIgKiBkLCB3IC0gNDAgKiBkLCAxNCAqIGQpOwogICAgICAgICAgICBwLnNldFRleHRBbGlnbihQYWludC5BbGlnbi5MRUZUKTsKICAgICAgICB9CgogICAgICAgIGlmIChodWQuZmxhc2ggPiAwZikgewogICAgICAgICAgICBwLnNldFN0eWxlKFBhaW50LlN0eWxlLkZJTEwpOwogICAgICAgICAgICBwLnNldENvbG9yKENvbG9yLmFyZ2IoKGludCkgKDE1MCAqIE1hdGgubWluKDFmLCBodWQuZmxhc2gpKSwgMjU1LCAyMTUsIDcwKSk7CiAgICAgICAgICAgIGMuZHJhd1JlY3QoMCwgMCwgdywgaCwgcCk7CiAgICAgICAgfQoKICAgICAgICBpZiAoaHVkLmdhbWVPdmVyIHx8IGh1ZC53aW4pIGRyYXdSZXN1bHQoYywgdywgaCwgZCwgaHVkKTsKICAgIH0KCiAgICBwcml2YXRlIHZvaWQgZHJhd01lbnUoQ2FudmFzIGMsIGludCB3LCBpbnQgaCwgZmxvYXQgZCkgewogICAgICAgIHAuc2V0U3R5bGUoUGFpbnQuU3R5bGUuRklMTCk7CiAgICAgICAgcC5zZXRDb2xvcigweEIwMDAwMDAwKTsKICAgICAgICBjLmRyYXdSZWN0KDAsIDAsIHcsIGgsIHApOwogICAgICAgIHAuc2V0VGV4dEFsaWduKFBhaW50LkFsaWduLkNFTlRFUik7CiAgICAgICAgcC5zZXRDb2xvcihDb2xvci5yZ2IoMjU1LCAyMjAsIDExMCkpOwogICAgICAgIHAuc2V0VGV4dFNpemUoMzggKiBkKTsKICAgICAgICBjLmRyYXdUZXh0KCLQl9CQ0KbQldCf0JrQkDog0J/QntCV0JfQlNCQIiwgdyAvIDJmLCBoICogMC4yNGYsIHApOwogICAgICAgIHAuc2V0Q29sb3IoQ29sb3IuV0hJVEUpOwogICAgICAgIHAuc2V0VGV4dFNpemUoMTYgKiBkKTsKICAgICAgICBjLmRyYXdUZXh0KCLQk9C+0L3QutCwINC/0L4g0LrRgNGL0YjQsNC8INC4INCy0LDQs9C+0L3QsNC8IiwgdyAvIDJmLCBoICogMC4zM2YsIHApOwogICAgICAgIHAuc2V0Q29sb3IoQ29sb3IucmdiKDE1MCwgMjIwLCAyNTUpKTsKICAgICAgICBwLnNldFRleHRTaXplKDE0ICogZCk7CiAgICAgICAgYy5kcmF3VGV4dCgi0JvQtdCy0YvQuSDRgdGC0LjQuiDigJQg0LvQtdCy0LDRjyDRgNGD0LrQsCwg0L/RgNCw0LLRi9C5IOKAlCDQv9GA0LDQstCw0Y8iLCB3IC8gMmYsIGggKiAwLjQ0ZiwgcCk7CiAgICAgICAgYy5kcmF3VGV4dCgi0KLRj9C90LjRgtC1INC6INC/0L7QtdC30LTRgywg0YfRgtC+0LHRiyDQt9Cw0YbQtdC/0LjRgtGM0YHRjy4g0J7QsdCwINCy0LLQtdGA0YUg4oCUINC90LAg0LrRgNGL0YjRgyIsIHcgLyAyZiwgaCAqIDAuNTBmLCBwKTsKICAgICAgICBjLmRyYXdUZXh0KCLQotCR0YjQvdC40Log0LLRi9C30YvQstCw0LXRgiDQvtGF0YDQsNC90YMg0Lgg0L7RgdGC0LDQvdCw0LLQu9C40LLQsNC10YIg0L/QvtC10LfQtCIsIHcgLyAyZiwgaCAqIDAuNTZmLCBwKTsKICAgICAgICBwLnNldENvbG9yKENvbG9yLnJnYigyNTUsIDIyMCwgMTIwKSk7CiAgICAgICAgcC5zZXRUZXh0U2l6ZSgxNSAqIGQpOwogICAgICAgIGMuZHJhd1RleHQoItCb0YPRh9GI0LjQuSDRgNC10LfRg9C70YzRgtCw0YI6ICIgKyB3b3JsZC5odWQuYmVzdCwgdyAvIDJmLCBoICogMC42NWYsIHApOwogICAgICAgIHAuc2V0Q29sb3IoQ29sb3IucmdiKDkwLCAyMzAsIDE0MCkpOwogICAgICAgIHAuc2V0VGV4dFNpemUoMjIgKiBkKTsKICAgICAgICBjLmRyYXdUZXh0KCLQndCQ0JbQnNCY0KLQlSwg0KfQotCe0JHQqyDQndCQ0KfQkNCi0KwiLCB3IC8gMmYsIGggKiAwLjc5ZiwgcCk7CiAgICAgICAgcC5zZXRUZXh0U2l6ZSgxMSAqIGQpOwogICAgICAgIHAuc2V0Q29sb3IoQ29sb3IucmdiKDE4MCwgMTkwLCAyMDApKTsKICAgICAgICBjLmRyYXdUZXh0KCLQkiDRgNC10LDQu9GM0L3QvtGB0YLQuCDQt9Cw0YbQtdC/0LrQsCDQt9CwINC/0L7QtdC30LTQsCDRgdC80LXRgNGC0LXQu9GM0L3QviDQvtC/0LDRgdC90LAg4oCUINGN0YLQviDQuNCz0YDQsCIsIHcgLyAyZiwgaCAtIDEyICogZCwgcCk7CiAgICAgICAgcC5zZXRUZXh0QWxpZ24oUGFpbnQuQWxpZ24uTEVGVCk7CiAgICB9CgogICAgcHJpdmF0ZSB2b2lkIGRyYXdSZXN1bHQoQ2FudmFzIGMsIGludCB3LCBpbnQgaCwgZmxvYXQgZCwgR2FtZVdvcmxkLkh1ZCBodWQpIHsKICAgICAgICBwLnNldFN0eWxlKFBhaW50LlN0eWxlLkZJTEwpOwogICAgICAgIHAuc2V0Q29sb3IoMHhEMDAwMDAwMCk7CiAgICAgICAgYy5kcmF3UmVjdCgwLCAwLCB3LCBoLCBwKTsKICAgICAgICBwLnNldFRleHRBbGlnbihQYWludC5BbGlnbi5DRU5URVIpOwogICAgICAgIHAuc2V0Q29sb3IoaHVkLndpbiA/IENvbG9yLnJnYigxMjAsIDI0MCwgMTUwKSA6IENvbG9yLnJnYigyNTUsIDkwLCA4MCkpOwogICAgICAgIHAuc2V0VGV4dFNpemUoMzQgKiBkKTsKICAgICAgICBjLmRyYXdUZXh0KGh1ZC53aW4gPyAi0JLQqyDQn9Ce0JHQldCU0JjQm9CYISIgOiAi0JLQkNChINCX0JDQlNCV0KDQltCQ0JvQmCIsIHcgLyAyZiwgaCAqIDAuMzhmLCBwKTsKICAgICAgICBwLnNldENvbG9yKENvbG9yLldISVRFKTsKICAgICAgICBwLnNldFRleHRTaXplKDE3ICogZCk7CiAgICAgICAgYy5kcmF3VGV4dCgi0J7Rh9C60Lg6ICIgKyBodWQuc2NvcmUgKyAiICAg0JvRg9GH0YjQuNC5OiAiICsgaHVkLmJlc3QsIHcgLyAyZiwgaCAqIDAuNTJmLCBwKTsKICAgICAgICBwLnNldENvbG9yKENvbG9yLnJnYigxMjAsIDI0MCwgMTUwKSk7CiAgICAgICAgcC5zZXRUZXh0U2l6ZSgyMCAqIGQpOwogICAgICAgIGMuZHJhd1RleHQoItCd0JDQltCc0JjQotCVLCDQp9Ci0J7QkdCrINCY0JPQoNCQ0KLQrCDQodCd0J7QktCQIiwgdyAvIDJmLCBoICogMC42OGYsIHApOwogICAgICAgIHAuc2V0VGV4dEFsaWduKFBhaW50LkFsaWduLkxFRlQpOwogICAgfQoKICAgIHByaXZhdGUgdm9pZCB3cmFwQ2VudGVyKENhbnZhcyBjLCBTdHJpbmcgdGV4dCwgZmxvYXQgeCwgZmxvYXQgeSwgZmxvYXQgbWF4VywgZmxvYXQgbGgpIHsKICAgICAgICBMaXN0PFN0cmluZz4gbGluZXMgPSBuZXcgQXJyYXlMaXN0PFN0cmluZz4oKTsKICAgICAgICBTdHJpbmdCdWlsZGVyIGN1ciA9IG5ldyBTdHJpbmdCdWlsZGVyKCk7CiAgICAgICAgZm9yIChTdHJpbmcgd29yZCA6IHRleHQuc3BsaXQoIiAiKSkgewogICAgICAgICAgICBTdHJpbmcgdGVzdCA9IGN1ci5sZW5ndGgoKSA9PSAwID8gd29yZCA6IGN1ciArICIgIiArIHdvcmQ7CiAgICAgICAgICAgIGlmIChwLm1lYXN1cmVUZXh0KHRlc3QpID4gbWF4VyAmJiBjdXIubGVuZ3RoKCkgPiAwKSB7CiAgICAgICAgICAgICAgICBsaW5lcy5hZGQoY3VyLnRvU3RyaW5nKCkpOwogICAgICAgICAgICAgICAgY3VyID0gbmV3IFN0cmluZ0J1aWxkZXIod29yZCk7CiAgICAgICAgICAgIH0gZWxzZSB7CiAgICAgICAgICAgICAgICBjdXIgPSBuZXcgU3RyaW5nQnVpbGRlcih0ZXN0KTsKICAgICAgICAgICAgfQogICAgICAgIH0KICAgICAgICBpZiAoY3VyLmxlbmd0aCgpID4gMCkgbGluZXMuYWRkKGN1ci50b1N0cmluZygpKTsKICAgICAgICBmbG9hdCB5eSA9IHk7CiAgICAgICAgZm9yIChpbnQgaSA9IGxpbmVzLnNpemUoKSAtIDE7IGkgPj0gMDsgaS0tKSB7CiAgICAgICAgICAgIGMuZHJhd1RleHQobGluZXMuZ2V0KGkpLCB4LCB5eSwgcCk7CiAgICAgICAgICAgIHl5IC09IGxoOwogICAgICAgIH0KICAgIH0KfQo=
+package com.narezany.poezd;
+
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.PixelFormat;
+import android.view.MotionEvent;
+import android.view.SurfaceView;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/** Прозрачный слой поверх 3D: меню, задания, джойстики, лог, мини-карта. */
+final class ControlsView extends SurfaceView {
+    volatile float lx, ly, rx, ry;
+
+    private final GameWorld world;
+    private final Paint p = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private final float radius;
+    private long leftId = -1, rightId = -1;
+    private float lox, loy, rox, roy;
+
+    ControlsView(Context ctx, GameWorld world) {
+        super(ctx);
+        this.world = world;
+        setZOrderOnTop(true);
+        getHolder().setFormat(PixelFormat.TRANSLUCENT);
+        radius = 44f * ctx.getResources().getDisplayMetrics().density;
+    }
+
+    private void setLeft(float dx, float dy) {
+        lx = Math3D.clamp(dx / radius, -1f, 1f);
+        ly = Math3D.clamp(dy / radius, -1f, 1f);
+    }
+
+    private void setRight(float dx, float dy) {
+        rx = Math3D.clamp(dx / radius, -1f, 1f);
+        ry = Math3D.clamp(dy / radius, -1f, 1f);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent e) {
+        int action = e.getActionMasked();
+        if (world.state != GameWorld.PLAY) {
+            if (action == MotionEvent.ACTION_DOWN) {
+                world.start();
+                lx = ly = rx = ry = 0;
+                leftId = rightId = -1;
+            }
+            return true;
+        }
+        int w = getWidth();
+        int idx = e.getActionIndex();
+        int id = e.getPointerId(idx);
+        float x = e.getX(idx), y = e.getY(idx);
+
+        switch (action) {
+            case MotionEvent.ACTION_DOWN:
+            case MotionEvent.ACTION_POINTER_DOWN:
+                if (x < w * 0.5f && leftId == -1) { leftId = id; lox = x; loy = y; }
+                else if (x >= w * 0.5f && rightId == -1) { rightId = id; rox = x; roy = y; }
+                break;
+            case MotionEvent.ACTION_MOVE:
+                for (int i = 0; i < e.getPointerCount(); i++) {
+                    int pid = e.getPointerId(i);
+                    if (pid == leftId) setLeft(e.getX(i) - lox, e.getY(i) - loy);
+                    else if (pid == rightId) setRight(e.getX(i) - rox, e.getY(i) - roy);
+                }
+                break;
+            case MotionEvent.ACTION_UP:
+            case MotionEvent.ACTION_POINTER_UP:
+            case MotionEvent.ACTION_CANCEL:
+                if (id == leftId) { leftId = -1; lx = ly = 0; }
+                else if (id == rightId) { rightId = -1; rx = ry = 0; }
+                break;
+            default:
+                break;
+        }
+        return true;
+    }
+
+    @Override
+    protected void onDraw(Canvas c) {
+        super.onDraw(c);
+        float d = getResources().getDisplayMetrics().density;
+        int w = getWidth(), h = getHeight();
+        GameWorld.Hud hud = world.hud;
+
+        if (hud.menu) {
+            drawMenu(c, w, h, d);
+            return;
+        }
+
+        // лог событий
+        p.setStyle(Paint.Style.FILL);
+        p.setColor(0xB8000000);
+        c.drawRect(0, 0, w, (14 + hud.lineCount * 14) * d, p);
+        p.setTextSize(12.5f * d);
+        p.setTextAlign(Paint.Align.LEFT);
+        float ty = 16 * d;
+        for (int i = 0; i < hud.lineCount; i++) {
+            String s = hud.lines[i] == null ? "" : hud.lines[i];
+            p.setColor(s.contains("ТБшник") || s.contains("охран") || s.contains("задержал")
+                    ? Color.rgb(255, 110, 90)
+                    : (s.contains("Удар") || s.contains("током")
+                        ? Color.rgb(255, 220, 80) : Color.WHITE));
+            c.drawText(s, 10 * d, ty, p);
+            ty += 14 * d;
+        }
+
+        // задание
+        float top = (18 + hud.lineCount * 14) * d;
+        p.setColor(0xAA102040);
+        c.drawRect(8 * d, top, w * 0.62f, top + 44 * d, p);
+        p.setColor(Color.rgb(120, 200, 255));
+        p.setTextSize(11 * d);
+        c.drawText("ЗАДАНИЕ " + (world.missionIndex + 1) + "/4   +100 очков",
+                14 * d, top + 14 * d, p);
+        p.setColor(Color.WHITE);
+        p.setTextSize(13.5f * d);
+        c.drawText(hud.mission, 14 * d, top + 31 * d, p);
+        p.setColor(0x33FFFFFF);
+        c.drawRect(14 * d, top + 36 * d, w * 0.62f - 14 * d, top + 40 * d, p);
+        p.setColor(Color.rgb(90, 220, 140));
+        c.drawRect(14 * d, top + 36 * d,
+                (14 * d) + (w * 0.62f - 28 * d) * hud.missionProgress, top + 40 * d, p);
+
+        // скорость, счёт, время
+        p.setTextAlign(Paint.Align.RIGHT);
+        p.setColor(Color.WHITE);
+        p.setTextSize(20 * d);
+        c.drawText(hud.speed, w - 10 * d, 23 * d, p);
+        p.setTextSize(12 * d);
+        c.drawText(hud.train, w - 10 * d, 38 * d, p);
+        p.setColor(Color.rgb(255, 220, 120));
+        c.drawText("очки " + hud.score + "   лучший " + hud.best, w - 10 * d, 53 * d, p);
+        p.setColor(Color.rgb(200, 220, 240));
+        c.drawText(hud.timer, w - 10 * d, 67 * d, p);
+        p.setTextAlign(Paint.Align.LEFT);
+
+        // тревога
+        if (hud.alert > 0.02f) {
+            float bw = 120 * d;
+            p.setColor(0x88000000);
+            c.drawRect(w / 2f - bw / 2, 8 * d, w / 2f + bw / 2, 16 * d, p);
+            p.setColor(Color.rgb(255, (int) (200 - 160 * hud.alert), 60));
+            c.drawRect(w / 2f - bw / 2, 8 * d,
+                    w / 2f - bw / 2 + bw * hud.alert, 16 * d, p);
+            p.setTextAlign(Paint.Align.CENTER);
+            p.setTextSize(10 * d);
+            p.setColor(Color.WHITE);
+            c.drawText("ТБШНИК ВИДИТ", w / 2f, 28 * d, p);
+            p.setTextAlign(Paint.Align.LEFT);
+        }
+
+        // джойстики и подсказки захвата
+        float jly = h * 0.74f;
+        p.setStyle(Paint.Style.STROKE);
+        p.setStrokeWidth(2 * d);
+        p.setColor(hud.leftReady ? Color.rgb(90, 230, 140) : 0x66FFFFFF);
+        c.drawCircle(w * 0.18f, jly, radius, p);
+        p.setColor(hud.rightReady ? Color.rgb(90, 230, 140) : 0x66FFFFFF);
+        c.drawCircle(w * 0.82f, jly, radius, p);
+        p.setStyle(Paint.Style.FILL);
+        p.setColor(hud.leftReady ? Color.rgb(120, 255, 170) : 0x88FFFFFF);
+        c.drawCircle(w * 0.18f + lx * radius * 0.45f, jly + ly * radius * 0.45f,
+                radius * 0.34f, p);
+        p.setColor(hud.rightReady ? Color.rgb(120, 255, 170) : 0x88FFFFFF);
+        c.drawCircle(w * 0.82f + rx * radius * 0.45f, jly + ry * radius * 0.45f,
+                radius * 0.34f, p);
+
+        p.setTextAlign(Paint.Align.CENTER);
+        p.setTextSize(11 * d);
+        p.setColor(Color.WHITE);
+        c.drawText("ЛЕВАЯ РУКА", w * 0.18f, jly + radius + 16 * d, p);
+        c.drawText("ПРАВАЯ РУКА", w * 0.82f, jly + radius + 16 * d, p);
+        if (hud.leftReady) {
+            p.setColor(Color.rgb(120, 255, 170));
+            c.drawText("◀ ТЯНИ", w * 0.18f - radius - 30 * d, jly, p);
+        }
+        if (hud.rightReady) {
+            p.setColor(Color.rgb(120, 255, 170));
+            c.drawText("ТЯНИ ▶", w * 0.82f + radius + 30 * d, jly, p);
+        }
+        p.setTextAlign(Paint.Align.LEFT);
+
+        // прицел
+        p.setColor(0xAAFFFFFF);
+        c.drawCircle(w / 2f, h / 2f, 3 * d, p);
+
+        // мини-карта
+        float mw = w * 0.44f, mx = w / 2f - mw / 2, my = h - 22 * d;
+        p.setColor(0x88000000);
+        c.drawRect(mx, my - 8 * d, mx + mw, my + 8 * d, p);
+        p.setColor(0x66FFFFFF);
+        c.drawRect(mx, my - 0.5f * d, mx + mw, my + 0.5f * d, p);
+        for (GameWorld.Train t : world.trains) {
+            float x = mx + mw * Math3D.clamp((t.z - world.pz + 120f) / 240f, 0, 1);
+            p.setColor(GameWorld.BODY[t.type][0] > 0.8f && GameWorld.BODY[t.type][1] < 0.3f
+                    ? Color.rgb(255, 90, 80) : Color.rgb(120, 220, 255));
+            c.drawRect(x - 2 * d, my - 5 * d, x + 2 * d, my + 5 * d, p);
+        }
+        for (GameWorld.Cop s : world.security) {
+            if (!s.active) continue;
+            float x = mx + mw * Math3D.clamp((s.z - world.pz + 120f) / 240f, 0, 1);
+            p.setColor(Color.RED);
+            c.drawCircle(x, my, 3 * d, p);
+        }
+        p.setColor(Color.rgb(120, 255, 170));
+        c.drawCircle(mx + mw / 2, my, 4 * d, p);
+
+        // подсказка
+        if (hud.tip != null && !hud.tip.isEmpty()) {
+            p.setColor(0xEEFFFFFF);
+            p.setTextAlign(Paint.Align.CENTER);
+            p.setTextSize(11.5f * d);
+            wrapCenter(c, hud.tip, w / 2f, h - 42 * d, w - 40 * d, 14 * d);
+            p.setTextAlign(Paint.Align.LEFT);
+        }
+
+        if (hud.flash > 0f) {
+            p.setStyle(Paint.Style.FILL);
+            p.setColor(Color.argb((int) (150 * Math.min(1f, hud.flash)), 255, 215, 70));
+            c.drawRect(0, 0, w, h, p);
+        }
+
+        if (hud.gameOver || hud.win) drawResult(c, w, h, d, hud);
+    }
+
+    private void drawMenu(Canvas c, int w, int h, float d) {
+        p.setStyle(Paint.Style.FILL);
+        p.setColor(0xB0000000);
+        c.drawRect(0, 0, w, h, p);
+        p.setTextAlign(Paint.Align.CENTER);
+        p.setColor(Color.rgb(255, 220, 110));
+        p.setTextSize(38 * d);
+        c.drawText("ЗАЦЕПКА: ПОЕЗДА", w / 2f, h * 0.24f, p);
+        p.setColor(Color.WHITE);
+        p.setTextSize(16 * d);
+        c.drawText("Гонка по крышам и вагонам", w / 2f, h * 0.33f, p);
+        p.setColor(Color.rgb(150, 220, 255));
+        p.setTextSize(14 * d);
+        c.drawText("Левый стик — левая рука, правый — правая", w / 2f, h * 0.44f, p);
+        c.drawText("Тяните к поезду, чтобы зацепиться. Оба вверх — на крышу", w / 2f, h * 0.50f, p);
+        c.drawText("ТБшник вызывает охрану и останавливает поезд", w / 2f, h * 0.56f, p);
+        p.setColor(Color.rgb(255, 220, 120));
+        p.setTextSize(15 * d);
+        c.drawText("Лучший результат: " + world.hud.best, w / 2f, h * 0.65f, p);
+        p.setColor(Color.rgb(90, 230, 140));
+        p.setTextSize(22 * d);
+        c.drawText("НАЖМИТЕ, ЧТОБЫ НАЧАТЬ", w / 2f, h * 0.79f, p);
+        p.setTextSize(11 * d);
+        p.setColor(Color.rgb(180, 190, 200));
+        c.drawText("В реальности зацепка за поезда смертельно опасна — это игра", w / 2f, h - 12 * d, p);
+        p.setTextAlign(Paint.Align.LEFT);
+    }
+
+    private void drawResult(Canvas c, int w, int h, float d, GameWorld.Hud hud) {
+        p.setStyle(Paint.Style.FILL);
+        p.setColor(0xD0000000);
+        c.drawRect(0, 0, w, h, p);
+        p.setTextAlign(Paint.Align.CENTER);
+        p.setColor(hud.win ? Color.rgb(120, 240, 150) : Color.rgb(255, 90, 80));
+        p.setTextSize(34 * d);
+        c.drawText(hud.win ? "ВЫ ПОБЕДИЛИ!" : "ВАС ЗАДЕРЖАЛИ", w / 2f, h * 0.38f, p);
+        p.setColor(Color.WHITE);
+        p.setTextSize(17 * d);
+        c.drawText("Очки: " + hud.score + "   Лучший: " + hud.best, w / 2f, h * 0.52f, p);
+        p.setColor(Color.rgb(120, 240, 150));
+        p.setTextSize(20 * d);
+        c.drawText("НАЖМИТЕ, ЧТОБЫ ИГРАТЬ СНОВА", w / 2f, h * 0.68f, p);
+        p.setTextAlign(Paint.Align.LEFT);
+    }
+
+    private void wrapCenter(Canvas c, String text, float x, float y, float maxW, float lh) {
+        List<String> lines = new ArrayList<String>();
+        StringBuilder cur = new StringBuilder();
+        for (String word : text.split(" ")) {
+            String test = cur.length() == 0 ? word : cur + " " + word;
+            if (p.measureText(test) > maxW && cur.length() > 0) {
+                lines.add(cur.toString());
+                cur = new StringBuilder(word);
+            } else {
+                cur = new StringBuilder(test);
+            }
+        }
+        if (cur.length() > 0) lines.add(cur.toString());
+        float yy = y;
+        for (int i = lines.size() - 1; i >= 0; i--) {
+            c.drawText(lines.get(i), x, yy, p);
+            yy -= lh;
+        }
+    }
+}
