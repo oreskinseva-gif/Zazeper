@@ -49,6 +49,7 @@ final class GameRenderer implements GLSurfaceView.Renderer {
     private float[] proj = Math3D.identity();
     private long lastTime;
     private Mesh handMesh;
+    private boolean reported;
 
     GameRenderer(GameWorld world, ControlsView controls) {
         this.world = world;
@@ -57,6 +58,8 @@ final class GameRenderer implements GLSurfaceView.Renderer {
 
     @Override
     public void onSurfaceCreated(GL10 gl, EGLConfig cfg) {
+      try {
+        CrashLog.mark("surface created");
         GLES30.glEnable(GLES30.GL_DEPTH_TEST);
         GLES30.glEnable(GLES30.GL_CULL_FACE);
         GLES30.glCullFace(GLES30.GL_BACK);
@@ -77,6 +80,11 @@ final class GameRenderer implements GLSurfaceView.Renderer {
         g.box(1, 1, 1, GameWorld.WHITE);
         handMesh = g.build();
         lastTime = 0;
+        CrashLog.mark("shaders and meshes ready");
+      } catch (Throwable t) {
+        CrashLog.error("surfaceCreated", t);
+        throw new RuntimeException(t);
+      }
     }
 
     private int compile(int type, String src) {
@@ -85,7 +93,11 @@ final class GameRenderer implements GLSurfaceView.Renderer {
         GLES30.glCompileShader(sh);
         int[] ok = new int[1];
         GLES30.glGetShaderiv(sh, GLES30.GL_COMPILE_STATUS, ok, 0);
-        if (ok[0] == 0) Log.e(TAG, "Shader: " + GLES30.glGetShaderInfoLog(sh));
+        if (ok[0] == 0) {
+            String msg = GLES30.glGetShaderInfoLog(sh);
+            Log.e(TAG, "Shader: " + msg);
+            CrashLog.mark("SHADER ERROR: " + msg);
+        }
         return sh;
     }
 
@@ -96,7 +108,11 @@ final class GameRenderer implements GLSurfaceView.Renderer {
         GLES30.glLinkProgram(p);
         int[] ok = new int[1];
         GLES30.glGetProgramiv(p, GLES30.GL_LINK_STATUS, ok, 0);
-        if (ok[0] == 0) Log.e(TAG, "Link: " + GLES30.glGetProgramInfoLog(p));
+        if (ok[0] == 0) {
+            String msg = GLES30.glGetProgramInfoLog(p);
+            Log.e(TAG, "Link: " + msg);
+            CrashLog.mark("LINK ERROR: " + msg);
+        }
         return p;
     }
 
@@ -108,6 +124,7 @@ final class GameRenderer implements GLSurfaceView.Renderer {
 
     @Override
     public void onDrawFrame(GL10 gl) {
+      try {
         long now = System.nanoTime();
         float dt = lastTime == 0 ? 0.016f : (now - lastTime) / 1e9f;
         lastTime = now;
@@ -158,6 +175,11 @@ final class GameRenderer implements GLSurfaceView.Renderer {
         if (world.handsVisible()) drawHands();
 
         controls.invalidate();
+        if (!reported) { CrashLog.mark("first frame drawn"); reported = true; }
+      } catch (Throwable t) {
+        if (!reported) { CrashLog.error("drawFrame", t); reported = true; }
+        throw new RuntimeException(t);
+      }
     }
 
     private static final float[] WHITE_TINT = {1f, 1f, 1f};
