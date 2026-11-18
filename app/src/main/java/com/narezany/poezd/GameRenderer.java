@@ -90,6 +90,11 @@ final class GameRenderer implements GLSurfaceView.Renderer {
         Mesh.Geo g = new Mesh.Geo();
         g.box(1, 1, 1, GameWorld.WHITE);
         handMesh = g.build();
+        for (GameWorld.Obj o : world.scenery) o.mesh.upload();
+        for (int i = 0; i < 4; i++) world.trainMeshes[i].upload();
+        world.humanMesh.upload();
+        handMesh.upload();
+        CrashLog.mark("meshes uploaded");
         lastTime = 0;
         CrashLog.mark("shaders and meshes ready");
       } catch (Throwable t) {
@@ -168,8 +173,12 @@ final class GameRenderer implements GLSurfaceView.Renderer {
         GLES30.glUniform3f(uCam, ex, ey, ez);
         cp("after camera");
 
-        for (GameWorld.Obj o : world.scenery) drawObj(o.mesh, o.x, o.y, o.z, o.ry,
-                o.sx, o.sy, o.sz, o.tint, proj, view);
+        int oi = 0;
+        for (GameWorld.Obj o : world.scenery) {
+            if (frameNo < 2 && (oi < 16 || oi % 25 == 0)) cp("scenery idx " + oi);
+            drawObj(o.mesh, o.x, o.y, o.z, o.ry, o.sx, o.sy, o.sz, o.tint, proj, view);
+            oi++;
+        }
         cp("after scenery");
 
         for (GameWorld.Train t : world.trains) {
