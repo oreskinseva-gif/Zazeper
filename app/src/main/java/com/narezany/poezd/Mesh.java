@@ -72,7 +72,7 @@ final class Mesh {
 
         void box(float cx, float cy, float cz, float sx, float sy, float sz, float[] col) {
             float hx = sx * 0.5f, hy = sy * 0.5f, hz = sz * 0.5f;
-            float[][] q = {
+            float[][][] q = {
                 {p(cx-hx,cy-hy,cz+hz), p(cx+hx,cy-hy,cz+hz), p(cx+hx,cy+hy,cz+hz), p(cx-hx,cy+hy,cz+hz)}, // +Z
                 {p(cx+hx,cy-hy,cz-hz), p(cx-hx,cy-hy,cz-hz), p(cx-hx,cy+hy,cz-hz), p(cx+hx,cy+hy,cz-hz)}, // -Z
                 {p(cx+hx,cy-hy,cz+hz), p(cx+hx,cy-hy,cz-hz), p(cx+hx,cy+hy,cz-hz), p(cx+hx,cy+hy,cz+hz)}, // +X
@@ -80,7 +80,7 @@ final class Mesh {
                 {p(cx-hx,cy+hy,cz+hz), p(cx+hx,cy+hy,cz+hz), p(cx+hx,cy+hy,cz-hz), p(cx-hx,cy+hy,cz-hz)}, // +Y
                 {p(cx-hx,cy-hy,cz-hz), p(cx+hx,cy-hy,cz-hz), p(cx+hx,cy-hy,cz+hz), p(cx-hx,cy-hy,cz+hz)}  // -Y
             };
-            for (float[] f : q) quad(f[0], f[1], f[2], f[3], col);
+            for (float[][] f : q) quad(f[0], f[1], f[2], f[3], col);
         }
 
         void box(float sx, float sy, float sz, float[] col) { box(0, 0, 0, sx, sy, sz, col); }
