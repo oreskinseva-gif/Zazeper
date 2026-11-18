@@ -80,6 +80,10 @@ final class GameWorld {
         boolean leftReady, rightReady;
         boolean gameOver, win, menu;
         float flash;
+        int health = 100;
+        int ach;
+        String style = "Синий";
+        boolean brokenLeg, brokenArm, hospital;
     }
 
     Context ctx;
@@ -89,9 +93,11 @@ final class GameWorld {
     final List<Cop> security = new ArrayList<Cop>();
     final List<Ev> events = new ArrayList<Ev>();
     final Mesh[] trainMeshes = new Mesh[4];
-    Mesh humanMesh;
+    final List<Obj> civilians = new ArrayList<Obj>();
+    Mesh humanMesh, carMesh, busMesh, civilianMesh;
 
     volatile Hud hud = new Hud();
+    volatile boolean jumpRequested;
     volatile int state = MENU;
 
     float px = 2.4f, py = 0f, pz = 0f;
@@ -107,15 +113,64 @@ final class GameWorld {
     boolean[] missionDone = new boolean[4];
     int missionIndex;
     float ridden;
+    float health = 100f, fallStartY;
+    boolean brokenLeg, brokenArm;
+    int style, achievements;
+    float clackTimer, armSlip;
+    boolean atStation;
+    String loseReason = "";
+
+    static final String[] STYLES = {"Синий", "Красный", "Зелёный", "Чёрный"};
+    static final float[][] STYLE_COLORS = {
+        {0.20f, 0.34f, 0.62f}, {0.65f, 0.16f, 0.16f},
+        {0.16f, 0.48f, 0.30f}, {0.16f, 0.17f, 0.20f}
+    };
 
     GameWorld(Context ctx) {
         this.ctx = ctx;
         SharedPreferences p = ctx.getSharedPreferences("poezd", Context.MODE_PRIVATE);
         best = p.getInt("best", 0);
+        achievements = p.getInt("ach", 0);
+        style = (int) Math3D.clamp(p.getInt("style", 0), 0f, STYLES.length - 1f);
         for (int i = 0; i < 4; i++) trainMeshes[i] = buildTrainMesh(i);
         humanMesh = buildHumanMesh();
+        carMesh = buildCarMesh();
+        busMesh = buildBusMesh();
+        civilianMesh = buildCivilianMesh();
         buildScenery();
         reset(false);
+    }
+
+    void cycleStyle() {
+        style = (style + 1) % STYLES.length;
+        saveBest();
+        Sound.get().beep(600 + style * 90, 0.08f);
+        refreshHud();
+    }
+
+    void addAch(int bit) {
+        if ((achievements & bit) != 0) return;
+        achievements |= bit;
+        saveBest();
+        log("Достижение получено! (" + Integer.bitCount(achievements) + "/8)");
+    }
+
+    void lose(String reason) {
+        if (state == LOSE) return;
+        state = LOSE;
+        loseReason = reason;
+        score += Math.max(0, (int) ridden / 10);
+        saveBest();
+        log(reason);
+        refreshHud();
+    }
+
+    void jump() {
+        if (state != PLAY || attached != null || !onGround) return;
+        vy = brokenLeg ? 4.4f : 6.4f;
+        onGround = false;
+        fallStartY = py;
+        Sound.get().beep(300, 0.06f);
     }
 
     // ---------- геометрия ----------
@@ -126,6 +181,7 @@ final class GameWorld {
         float[] dark = {0.07f, 0.09f, 0.12f};
         float[] glass = {0.10f, 0.28f, 0.40f};
         float[] lamp = {1f, 0.94f, 0.72f};
+        float[] steel = {0.72f, 0.75f, 0.78f};
 
         g.box(0, 0, 0, 2.95f, 3.0f, 22.6f, body);
         g.box(0, 1.63f, 0, 2.6f, 0.28f, 21.8f, ac);
@@ -149,6 +205,17 @@ final class GameWorld {
             g.box(1.26f, -1.68f, z, 0.45f, 0.55f, 1.05f, dark);
             g.box(-1.26f, -1.68f, z, 0.45f, 0.55f, 1.05f, dark);
         }
+        // пантограф и рёбра крыши
+        g.box(0, 1.79f, -5.5f, 1.9f, 0.05f, 0.9f, dark);
+        for (float x : new float[]{-0.6f, 0.6f}) {
+            g.box(x, 2.15f, -5.5f, 0.09f, 0.7f, 0.09f, steel);
+        }
+        g.box(0, 2.5f, -5.5f, 1.55f, 0.08f, 0.12f, steel);
+        g.box(0, 2.62f, -5.5f, 0.5f, 0.12f, 0.5f, new float[]{0.12f, 0.12f, 0.14f});
+        for (float z = -9f; z <= 9f; z += 3f)
+            g.box(0, 1.79f, z, 2.4f, 0.03f, 0.08f, ac);
+        // табло маршрута
+        g.box(0, 1.35f, 12.99f, 1.3f, 0.28f, 0.04f, new float[]{0.05f, 0.10f, 0.13f});
         return g.build();
     }
 
@@ -169,6 +236,53 @@ final class GameWorld {
         g.box(0, 2.28f, 0, 0.54f, 0.14f, 0.54f, cap);
         g.box(0, 2.22f, 0.25f, 0.5f, 0.05f, 0.16f, cap);
         g.box(0.22f, 1.55f, 0.23f, 0.13f, 0.13f, 0.04f, new float[]{1f, 0.82f, 0.2f});
+        return g.build();
+    }
+
+    private Mesh buildCarMesh() {
+        Mesh.Geo g = new Mesh.Geo();
+        float[] body = {0.72f, 0.20f, 0.18f};
+        float[] glass = {0.16f, 0.30f, 0.38f};
+        float[] dark = {0.09f, 0.10f, 0.12f};
+        g.box(0, 0, 0, 1.9f, 0.8f, 4.2f, body);
+        g.box(0, 0.62f, -0.2f, 1.55f, 0.55f, 2.1f, glass);
+        g.box(0, 0.62f, 1.55f, 1.55f, 0.5f, 0.9f, glass);
+        for (float x : new float[]{-0.95f, 0.95f})
+            for (float z : new float[]{-1.4f, 1.4f})
+                g.box(x, -0.38f, z, 0.22f, 0.42f, 0.55f, dark);
+        g.box(-0.6f, 0.46f, 2.12f, 0.35f, 0.16f, 0.05f, new float[]{1f, 0.92f, 0.7f});
+        g.box(0.6f, 0.46f, 2.12f, 0.35f, 0.16f, 0.05f, new float[]{1f, 0.92f, 0.7f});
+        return g.build();
+    }
+
+    private Mesh buildBusMesh() {
+        Mesh.Geo g = new Mesh.Geo();
+        float[] body = {0.16f, 0.52f, 0.32f};
+        float[] glass = {0.18f, 0.34f, 0.42f};
+        float[] dark = {0.09f, 0.10f, 0.12f};
+        g.box(0, 0, 0, 2.3f, 2.3f, 7.5f, body);
+        for (float z = -3f; z <= 3f; z += 1.5f) {
+            g.box(1.16f, 0.5f, z, 0.04f, 0.85f, 1.2f, glass);
+            g.box(-1.16f, 0.5f, z, 0.04f, 0.85f, 1.2f, glass);
+        }
+        g.box(0, 0.6f, 3.78f, 1.7f, 1.0f, 0.05f, glass);
+        for (float z : new float[]{-2.4f, 2.2f})
+            for (float x : new float[]{-1.0f, 1.0f})
+                g.box(x, -1.02f, z, 0.35f, 0.5f, 0.7f, dark);
+        return g.build();
+    }
+
+    private Mesh buildCivilianMesh() {
+        Mesh.Geo g = new Mesh.Geo();
+        float[] coat = {0.62f, 0.30f, 0.24f};
+        float[] legs = {0.20f, 0.22f, 0.28f};
+        float[] skin = {0.82f, 0.64f, 0.48f};
+        g.box(-0.14f, 0.42f, 0, 0.22f, 0.85f, 0.25f, legs);
+        g.box(0.14f, 0.42f, 0, 0.22f, 0.85f, 0.25f, legs);
+        g.box(0, 1.28f, 0, 0.6f, 0.9f, 0.36f, coat);
+        g.box(-0.38f, 1.28f, 0, 0.16f, 0.8f, 0.2f, coat);
+        g.box(0.38f, 1.28f, 0, 0.16f, 0.8f, 0.2f, coat);
+        g.box(0, 1.93f, 0, 0.34f, 0.34f, 0.34f, skin);
         return g.build();
     }
 
@@ -247,6 +361,38 @@ final class GameWorld {
             scenery.add(new Obj(box, -7.5f, 4.4f, z, 3.0f, 3.0f, 3.0f, leaves));
             scenery.add(new Obj(box, -7.5f, 6.1f, z, 2.0f, 1.6f, 2.0f, new float[]{0.22f, 0.48f, 0.24f}));
         }
+
+        // город на горизонте
+        float[] city = {0.30f, 0.40f, 0.52f};
+        for (int i = 0; i < 28; i++) {
+            float h = 9f + (float) Math.abs(Math.sin(i * 2.3f)) * 26f;
+            scenery.add(new Obj(box, -84f + i * 6.4f, h * 0.5f - 1f, -660f,
+                    5.2f, h, 6f, city));
+        }
+
+        // машины и автобусы у станций
+        float[][] cars = {
+            {0.72f, 0.20f, 0.18f}, {0.90f, 0.90f, 0.92f},
+            {0.14f, 0.30f, 0.60f}, {0.88f, 0.72f, 0.16f}
+        };
+        for (float sz : new float[]{-300f, 0f, 300f}) {
+            for (int i = 0; i < 4; i++) {
+                scenery.add(new Obj(carMesh, 11.4f + (i % 2) * 2.8f, 0.45f,
+                        sz + 15f + i * 11f, 0f, 1f, 1f, 1f, cars[i]));
+            }
+            scenery.add(new Obj(busMesh, 15.5f, 1.3f, sz - 10f,
+                    0f, 1f, 1f, 1f, new float[]{0.16f, 0.50f, 0.32f}));
+        }
+
+        // люди на платформах
+        float[][] coats = {
+            {0.62f, 0.30f, 0.24f}, {0.20f, 0.34f, 0.62f},
+            {0.32f, 0.46f, 0.26f}, {0.52f, 0.30f, 0.55f}
+        };
+        for (int i = 0; i < 22; i++) {
+            civilians.add(new Obj(civilianMesh, 3.6f + (i % 3) * 1.1f, 0.72f,
+                    -300f + i * 28f, 0f, 1f, 1f, 1f, coats[i % coats.length]));
+        }
     }
 
     // ---------- состояние ----------
@@ -269,6 +415,8 @@ final class GameWorld {
         leftHand = rightHand = false; attached = null;
         leftCd = rightCd = shockCd = flash = time = hudTimer = 0f;
         stoppedTrain = null; stopTimer = 0f; score = 0; ridden = 0f;
+        health = 100f; fallStartY = 0f; brokenLeg = false; brokenArm = false;
+        jumpRequested = false; clackTimer = 0f; armSlip = 0f; loseReason = "";
         missionDone = new boolean[4]; missionIndex = 0;
         state = startPlaying ? PLAY : MENU;
         log("Добро пожаловать! Задание: зацепитесь за поезд.");
@@ -282,13 +430,12 @@ final class GameWorld {
     }
 
     void saveBest() {
-        if (score > best) {
-            best = score;
-            try {
-                SharedPreferences p = ctx.getSharedPreferences("poezd", Context.MODE_PRIVATE);
-                p.edit().putInt("best", best).apply();
-            } catch (Throwable ignored) {}
-        }
+        if (score > best) best = score;
+        try {
+            SharedPreferences p = ctx.getSharedPreferences("poezd", Context.MODE_PRIVATE);
+            p.edit().putInt("best", best).putInt("style", style)
+                    .putInt("ach", achievements).apply();
+        } catch (Throwable ignored) {}
     }
 
     void log(String s) {
@@ -307,6 +454,8 @@ final class GameWorld {
         missionIndex++;
         if (missionIndex >= MISSIONS.length) {
             state = WIN;
+            addAch(8);
+            if (health >= 99f) addAch(32);
             score += 200;
             saveBest();
             log("Все задания выполнены! Победа!");
@@ -353,6 +502,7 @@ final class GameWorld {
         if (leftHand || rightHand) return;
         Train t = attached;
         attached = null; onRoof = false;
+        fallStartY = py;
         if (t != null) {
             vx = 2.8f; vy = 2.4f; vz = t.speed * 0.9f;
             onGround = false;
@@ -433,11 +583,7 @@ final class GameWorld {
             float d = (float) Math.sqrt(dx * dx + dz * dz);
             boolean canCatch = py < 2.6f || (attached != null && attached.speed < 1f);
             if (d < 1.6f && canCatch) {
-                state = LOSE;
-                score += Math.max(0, (int) ridden / 10);
-                saveBest();
-                log("Охрана догнала и задержала вас!");
-                refreshHud();
+                lose("Охрана догнала и задержала вас!");
                 return;
             }
             if (d > 0.05f) {
@@ -452,11 +598,15 @@ final class GameWorld {
             if (!leftHand && leftCd <= 0 && lx < -0.55f) {
                 leftHand = true; attached = near; score += 5;
                 log("Левая рука зацепилась за «" + NAMES[near.type] + "»");
+                addAch(1);
+                if (near.speed > 9f) addAch(64);
                 if (missionIndex == 0) completeMission();
             }
-            if (!rightHand && rightCd <= 0 && rx > 0.55f) {
+            if (!rightHand && !brokenArm && rightCd <= 0 && rx > 0.55f) {
                 rightHand = true; attached = near; score += 5;
                 log("Правая рука зацепилась за «" + NAMES[near.type] + "»");
+                addAch(1);
+                if (near.speed > 9f) addAch(64);
                 if (missionIndex == 0) completeMission();
             }
             if (leftHand && lx > 0.55f) { leftCd = 0.6f; detach(true); }
@@ -464,7 +614,21 @@ final class GameWorld {
 
             if (attached != null) {
                 ridden += Math.abs(attached.speed) * dt;
+                clackTimer -= dt;
+                if (clackTimer <= 0f && attached.speed > 2f) {
+                    clackTimer = Math.max(0.055f, 0.6f / attached.speed);
+                    Sound.get().beep(150f, 0.02f);
+                }
+                if (brokenArm && rightHand) {
+                    armSlip += dt;
+                    if (armSlip > 1.6f) {
+                        armSlip = 0f;
+                        detach(false);
+                        log("Сломанная рука соскользнула!");
+                    }
+                }
                 onRoof = leftHand && rightHand && ly < -0.6f && ry < -0.6f;
+                if (onRoof) addAch(2);
                 px = onRoof ? -1.2f : 0.42f;
                 pz = attached.z - 36f;
                 float targetY = onRoof ? 4.05f : 1.95f;
@@ -473,31 +637,68 @@ final class GameWorld {
                 onGround = false;
 
                 if (missionIndex == 1 && ridden >= 250f) completeMission();
-                if (missionIndex == 2 && attached.type == 2 && ridden > 300f) completeMission();
+                if (missionIndex == 2 && attached.type == 2 && ridden > 300f) {
+                    addAch(4);
+                    completeMission();
+                }
                 if (missionIndex == 3 && pz > 250f) completeMission();
 
                 if (onRoof && Math.abs(px + 1.2f) < 1.9f && shockCd <= 0) {
                     shockCd = 2.6f; flash = 1f;
                     detach(true); detach(false);
                     py = 2.6f; vy = -3.5f; vx = 2.5f;
+                    health -= 16f;
                     log("⚡ Удар током! Провода сбросили вас");
+                    if (health <= 0f) { lose("Погиб от удара током"); return; }
                 }
             } else if (ly < -0.5f && ry < -0.5f) {
                 px -= 2.4f * dt;
             }
         } else {
-            vx = lx * 3.4f;
-            vz = ly * 3.4f;
+            float spd = brokenLeg ? 2.0f : 3.4f;
+            vx = lx * spd;
+            vz = ly * spd;
             yaw += rx * dt * 1.7f;
             pitch = Math3D.clamp(pitch - ry * dt * 1.3f, -1.15f, 1.15f);
+            if (jumpRequested) { jumpRequested = false; jump(); }
             if (!onGround) {
                 vy -= 12f * dt;
                 py += vy * dt;
-                if (py <= 0f) { py = 0f; vy = 0f; onGround = true; }
+                if (py <= 0f) {
+                    float fell = fallStartY - py;
+                    py = 0f; vy = 0f; onGround = true;
+                    if (fell > 3.2f) {
+                        health -= (fell - 3.2f) * 7f;
+                        flash = 0.8f;
+                        if (fell > 10f) {
+                            brokenLeg = true; brokenArm = true;
+                            log("Переломы ноги и руки! Больница у станции");
+                        } else if (fell > 6.5f) {
+                            brokenLeg = true;
+                            log("Перелом ноги! Выдвигайтесь медленнее");
+                        } else {
+                            log("Удар при падении: -" + (int) ((fell - 3.2f) * 7f) + " HP");
+                        }
+                        if (health <= 0f) { lose("Вы разбились"); return; }
+                    }
+                }
             }
             px += vx * dt;
             pz += vz * dt;
             px = Math3D.clamp(px, -0.6f, 5.3f);
+        }
+
+        // больница у станции: лечит и ставит на ноги
+        atStation = false;
+        for (float sz : new float[]{-300f, 0f, 300f})
+            if (Math.abs(pz - sz) < 16f && px > 2.8f) atStation = true;
+        if (atStation && health < 100f) {
+            health = Math.min(100f, health + 14f * dt);
+            if (brokenLeg || brokenArm) {
+                brokenLeg = false; brokenArm = false;
+                log("Больница: вас полечили и поставили на ноги");
+                addAch(16);
+            }
         }
 
         for (int i = events.size() - 1; i >= 0; i--) {
@@ -541,6 +742,12 @@ final class GameWorld {
         else if (attached != null && !onRoof)
             h.tip = "Держитесь: не двигайте стик в противоположную сторону. Оба стика вверх — на крышу.";
         else h.tip = "";
+        h.health = Math.max(0, (int) health);
+        h.ach = Integer.bitCount(achievements);
+        h.style = STYLES[style];
+        h.brokenLeg = brokenLeg;
+        h.brokenArm = brokenArm;
+        h.hospital = atStation && health < 99.5f;
         hud = h;
     }
 }

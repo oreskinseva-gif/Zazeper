@@ -22,12 +22,16 @@ final class GameRenderer implements GLSurfaceView.Renderer {
         "uniform vec2 uRes;" +
         "void main() {" +
         "  float t = clamp(gl_FragCoord.y / uRes.y, 0.0, 1.0);" +
-        "  vec3 sky = mix(vec3(0.78, 0.88, 0.96), vec3(0.20, 0.46, 0.80), t);" +
-        "  vec2 sp = vec2(uRes.x * 0.78, uRes.y * 0.80);" +
+        "  vec3 sky = mix(vec3(0.86, 0.92, 0.97), vec3(0.18, 0.42, 0.78), t);" +
+        "  sky = mix(sky, vec3(0.98, 0.86, 0.68), (1.0 - t) * 0.22);" +
+        "  vec2 sp = vec2(uRes.x * 0.78, uRes.y * 0.82);" +
         "  float d = distance(gl_FragCoord.xy, sp) / uRes.y;" +
-        "  sky += vec3(1.0, 0.88, 0.60) * (1.0 - smoothstep(0.0, 0.20, d)) * 0.85;" +
-        "  float cloud = sin(gl_FragCoord.x * 0.006 + 1.0) * sin(gl_FragCoord.y * 0.011);" +
-        "  sky += vec3(0.06) * smoothstep(0.35, 0.8, cloud) * t;" +
+        "  sky += vec3(1.0, 0.90, 0.65) * (1.0 - smoothstep(0.0, 0.22, d)) * 0.7;" +
+        "  sky = mix(sky, vec3(1.0, 0.97, 0.84), 1.0 - smoothstep(0.018, 0.032, d));" +
+        "  float c1 = sin(gl_FragCoord.x * 0.004 + 1.0) * sin(gl_FragCoord.y * 0.009 - 0.5);" +
+        "  float c2 = sin(gl_FragCoord.x * 0.011 - 2.0) * cos(gl_FragCoord.y * 0.017);" +
+        "  float clouds = smoothstep(0.25, 0.75, c1 * 0.65 + c2 * 0.35);" +
+        "  sky = mix(sky, vec3(0.97, 0.98, 1.0), clouds * 0.32 * t);" +
         "  gl_FragColor = vec4(sky, 1.0);" +
         "}";
 
@@ -128,6 +132,9 @@ final class GameRenderer implements GLSurfaceView.Renderer {
         for (GameWorld.Obj o : world.scenery) o.mesh.upload();
         for (int i = 0; i < 4; i++) world.trainMeshes[i].upload();
         world.humanMesh.upload();
+        world.carMesh.upload();
+        world.busMesh.upload();
+        world.civilianMesh.upload();
         handMesh.upload();
         CrashLog.mark("meshes uploaded");
         lastTime = 0;
@@ -245,6 +252,16 @@ final class GameRenderer implements GLSurfaceView.Renderer {
             drawObj(world.humanMesh, s.x, 0.72f, s.z, 0f, 1f, 1f, 1f, RED_TINT, proj, view);
         }
 
+        int ci = 0;
+        for (GameWorld.Obj o : world.civilians) {
+            float sway = (float) Math.sin(world.time * 0.8f + ci * 1.7f) * 0.9f;
+            drawObj(o.mesh, o.x, o.y, o.z + sway, o.ry, o.sx, o.sy, o.sz, o.tint, proj, view);
+            ci++;
+        }
+        if (world.state == GameWorld.PLAY && !world.onRoof && world.attached == null) {
+            drawObj(handMesh, world.px - 0.2f, 0.71f, world.pz, 0f,
+                    0.85f, 0.02f, 0.55f, SHADOW, proj, view);
+        }
         cp("after people");
         if (world.handsVisible()) drawHands();
         cp("after hands");
@@ -279,6 +296,7 @@ final class GameRenderer implements GLSurfaceView.Renderer {
     private static final float[] RED_TINT = {1f, 0.45f, 0.35f};
     private static final float[] SKIN = {0.86f, 0.66f, 0.50f};
     private static final float[] SLEEVE = {0.20f, 0.28f, 0.42f};
+    private static final float[] GRIP = {0.95f, 0.78f, 0.42f};
 
     private void drawObj(Mesh m, float x, float y, float z, float ry,
                          float sx, float sy, float sz, float[] tint,
@@ -293,31 +311,52 @@ final class GameRenderer implements GLSurfaceView.Renderer {
         m.draw();
     }
 
-    /** Руки рисуем в пространстве камеры: view = единичная матрица. */
+    private float reachL, reachR;
+
+    /** Руки-регдол в пространстве камеры: каждая тянется независимо. */
     private void drawHands() {
         GLES30.glUniform1f(uFogMix, 0f);
         GLES30.glUniform3f(uCam, 0f, 0f, 0f);
-        drawHand(-0.52f, world.leftHand, false);
-        drawHand(0.52f, world.rightHand, true);
+        reachL += ((world.leftHand ? 1f : 0f) - reachL) * 0.22f;
+        reachR += ((world.rightHand ? 1f : 0f) - reachR) * 0.22f;
+        float[] cloth = GameWorld.STYLE_COLORS[world.style];
+        drawHand(-0.52f, false, reachL, cloth);
+        drawHand(0.52f, true, reachR, cloth);
         GLES30.glUniform1f(uFogMix, 1f);
     }
 
-    private void drawHand(float x, boolean attached, boolean right) {
-        float reach = attached ? 0.42f : 0f;
-        float z = -1.05f - reach;
-        float y = -0.52f - reach * 0.25f;
-        float[] model = Math3D.model(x, y, z, 0f, 0.17f, 0.17f, 0.5f + reach);
-        GLES30.glUniformMatrix4fv(uMVP, 1, false, Math3D.mul(proj, model), 0);
-        GLES30.glUniformMatrix4fv(uModel, 1, false, model, 0);
-        GLES30.glUniform3fv(uTint, 1, SKIN, 0);
+    private void drawHand(float x, boolean right, float reach, float[] cloth) {
+        float sx = x * 1.28f, sy = -0.98f, sz = -0.38f;
+        float hx = x * (1f - 0.12f * reach);
+        float hy = -0.64f + 0.34f * reach;
+        float hz = -1.02f - 0.62f * reach;
+        float side = right ? 0.14f : -0.14f;
+        float ex = (sx + hx) * 0.5f + side;
+        float ey = (sy + hy) * 0.5f - 0.12f;
+        float ez = (sz + hz) * 0.5f + 0.08f;
+
+        drawLimb(sx, sy, sz, ex, ey, ez, 0.17f, cloth);
+        drawLimb(ex, ey, ez, hx, hy, hz, 0.13f, SKIN);
+
+        float[] palm = Math3D.model(hx, hy, hz, 0f, 0.15f, 0.17f, 0.13f, 0.22f);
+        GLES30.glUniformMatrix4fv(uMVP, 1, false, Math3D.mul(proj, palm), 0);
+        GLES30.glUniformMatrix4fv(uModel, 1, false, palm, 0);
+        GLES30.glUniform3fv(uTint, 1, reach > 0.5f ? GRIP : SKIN, 0);
         handMesh.bind(aPos, aNorm, aCol);
         handMesh.draw();
+    }
 
-        float[] sleeve = Math3D.model(x * 1.25f, y - 0.42f, z + 0.16f, 0f,
-                0.26f, 0.6f, 0.3f);
-        GLES30.glUniformMatrix4fv(uMVP, 1, false, Math3D.mul(proj, sleeve), 0);
-        GLES30.glUniformMatrix4fv(uModel, 1, false, sleeve, 0);
-        GLES30.glUniform3fv(uTint, 1, SLEEVE, 0);
+    private void drawLimb(float ax, float ay, float az,
+                          float bx, float by, float bz, float thick, float[] col) {
+        float dx = bx - ax, dy = by - ay, dz = bz - az;
+        float len = (float) Math.sqrt(dx * dx + dy * dy + dz * dz);
+        if (len < 0.01f) len = 0.01f;
+        float ang = (float) Math.atan2(dy, -dz);
+        float[] m = Math3D.model((ax + bx) * 0.5f, (ay + by) * 0.5f,
+                (az + bz) * 0.5f, 0f, ang, thick, thick, len);
+        GLES30.glUniformMatrix4fv(uMVP, 1, false, Math3D.mul(proj, m), 0);
+        GLES30.glUniformMatrix4fv(uModel, 1, false, m, 0);
+        GLES30.glUniform3fv(uTint, 1, col, 0);
         handMesh.bind(aPos, aNorm, aCol);
         handMesh.draw();
     }

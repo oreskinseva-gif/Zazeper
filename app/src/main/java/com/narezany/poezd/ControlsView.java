@@ -42,15 +42,30 @@ final class ControlsView extends SurfaceView {
     @Override
     public boolean onTouchEvent(MotionEvent e) {
         int action = e.getActionMasked();
+        int w = getWidth();
+        int h = getHeight();
         if (world.state != GameWorld.PLAY) {
             if (action == MotionEvent.ACTION_DOWN) {
-                world.start();
-                lx = ly = rx = ry = 0;
-                leftId = rightId = -1;
+                float sx = e.getX(), sy = e.getY();
+                if (Math.abs(sx - w / 2f) < 110f
+                        && Math.abs(sy - h * 0.69f) < 34f) {
+                    world.cycleStyle();
+                } else {
+                    world.start();
+                    lx = ly = rx = ry = 0;
+                    leftId = rightId = -1;
+                }
             }
             return true;
         }
-        int w = getWidth();
+        if (action == MotionEvent.ACTION_DOWN || action == MotionEvent.ACTION_POINTER_DOWN) {
+            int pi = e.getActionIndex();
+            if (Math.abs(e.getX(pi) - w / 2f) < 62f
+                    && Math.abs(e.getY(pi) - h * 0.82f) < 62f) {
+                world.jumpRequested = true;
+                return true;
+            }
+        }
         int idx = e.getActionIndex();
         int id = e.getPointerId(idx);
         float x = e.getX(idx), y = e.getY(idx);
@@ -154,6 +169,44 @@ final class ControlsView extends SurfaceView {
             p.setTextAlign(Paint.Align.LEFT);
         }
 
+        // здоровье и состояние
+        p.setStyle(Paint.Style.FILL);
+        float hbX = w - 162 * d, hbY = 82 * d;
+        p.setColor(0x99000000);
+        c.drawRect(hbX - 2 * d, hbY - 2 * d, hbX + 150 * d + 2 * d, hbY + 8 * d, p);
+        p.setColor(hud.health > 55 ? Color.rgb(90, 220, 130)
+                : (hud.health > 25 ? Color.rgb(250, 200, 70) : Color.rgb(250, 80, 70)));
+        c.drawRect(hbX, hbY, hbX + 150 * d * hud.health / 100f, hbY + 6 * d, p);
+        p.setTextAlign(Paint.Align.CENTER);
+        p.setTextSize(10 * d);
+        p.setColor(Color.WHITE);
+        c.drawText("ЗДОРОВЬЕ " + hud.health + "%", hbX + 75 * d, hbY + 20 * d, p);
+        if (hud.brokenLeg || hud.brokenArm) {
+            p.setColor(Color.rgb(255, 120, 100));
+            c.drawText("ТРАВМА: " + (hud.brokenLeg ? "нога " : "")
+                    + (hud.brokenArm ? "рука" : ""), hbX + 75 * d, hbY + 33 * d, p);
+        }
+        if (hud.hospital) {
+            p.setColor(Color.rgb(120, 255, 180));
+            c.drawText("БОЛЬНИЦА: лечение рядом с платформой", hbX + 75 * d, hbY + 46 * d, p);
+        }
+        p.setTextAlign(Paint.Align.LEFT);
+
+        // кнопка прыжка
+        p.setStyle(Paint.Style.FILL);
+        p.setColor(0x7733AACC);
+        c.drawCircle(w / 2f, h * 0.82f, 46, p);
+        p.setStyle(Paint.Style.STROKE);
+        p.setColor(0xFFAADDFF);
+        p.setStrokeWidth(2 * d);
+        c.drawCircle(w / 2f, h * 0.82f, 46, p);
+        p.setStyle(Paint.Style.FILL);
+        p.setTextAlign(Paint.Align.CENTER);
+        p.setTextSize(12 * d);
+        p.setColor(Color.WHITE);
+        c.drawText("ПРЫЖОК", w / 2f, h * 0.82f + 5 * d, p);
+        p.setTextAlign(Paint.Align.LEFT);
+
         // джойстики и подсказки захвата
         float jly = h * 0.74f;
         p.setStyle(Paint.Style.STROKE);
@@ -246,10 +299,30 @@ final class ControlsView extends SurfaceView {
         c.drawText("ТБшник вызывает охрану и останавливает поезд", w / 2f, h * 0.56f, p);
         p.setColor(Color.rgb(255, 220, 120));
         p.setTextSize(15 * d);
-        c.drawText("Лучший результат: " + world.hud.best, w / 2f, h * 0.65f, p);
+        c.drawText("Лучший: " + world.hud.best + "    Достижения: " + world.hud.ach + "/8",
+                w / 2f, h * 0.64f, p);
+
+        // выбор стиля одежды
+        p.setTextSize(12 * d);
+        p.setColor(Color.rgb(190, 210, 230));
+        c.drawText("СТИЛЬ: " + world.hud.style + "  (нажмите, чтобы сменить)",
+                w / 2f, h * 0.665f, p);
+        for (int i = 0; i < 4; i++) {
+            float[] col = GameWorld.STYLE_COLORS[i];
+            float x0 = w / 2f - 100f + i * 50f;
+            p.setStyle(Paint.Style.FILL);
+            p.setColor(Color.rgb((int) (col[0] * 255), (int) (col[1] * 255), (int) (col[2] * 255)));
+            c.drawRect(x0, h * 0.69f - 18f, x0 + 44f, h * 0.69f + 18f, p);
+            p.setStyle(Paint.Style.STROKE);
+            p.setColor(i == world.style ? Color.WHITE : 0x66FFFFFF);
+            p.setStrokeWidth((i == world.style ? 3 : 1) * d);
+            c.drawRect(x0, h * 0.69f - 18f, x0 + 44f, h * 0.69f + 18f, p);
+        }
+        p.setStyle(Paint.Style.FILL);
+
         p.setColor(Color.rgb(90, 230, 140));
         p.setTextSize(22 * d);
-        c.drawText("НАЖМИТЕ, ЧТОБЫ НАЧАТЬ", w / 2f, h * 0.79f, p);
+        c.drawText("НАЖМИТЕ, ЧТОБЫ НАЧАТЬ", w / 2f, h * 0.81f, p);
         p.setTextSize(11 * d);
         p.setColor(Color.rgb(180, 190, 200));
         c.drawText("В реальности зацепка за поезда смертельно опасна — это игра", w / 2f, h - 12 * d, p);
@@ -266,7 +339,12 @@ final class ControlsView extends SurfaceView {
         c.drawText(hud.win ? "ВЫ ПОБЕДИЛИ!" : "ВАС ЗАДЕРЖАЛИ", w / 2f, h * 0.38f, p);
         p.setColor(Color.WHITE);
         p.setTextSize(17 * d);
-        c.drawText("Очки: " + hud.score + "   Лучший: " + hud.best, w / 2f, h * 0.52f, p);
+        c.drawText("Очки: " + hud.score + "   Лучший: " + hud.best, w / 2f, h * 0.50f, p);
+        p.setTextSize(13 * d);
+        p.setColor(Color.rgb(190, 215, 240));
+        if (!hud.win && world.loseReason != null && !world.loseReason.isEmpty())
+            c.drawText(world.loseReason, w / 2f, h * 0.56f, p);
+        c.drawText("Достижения: " + hud.ach + "/8", w / 2f, h * 0.60f, p);
         p.setColor(Color.rgb(120, 240, 150));
         p.setTextSize(20 * d);
         c.drawText("НАЖМИТЕ, ЧТОБЫ ИГРАТЬ СНОВА", w / 2f, h * 0.68f, p);
